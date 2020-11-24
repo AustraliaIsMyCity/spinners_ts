@@ -1,0 +1,222 @@
+.CenterHud {
+    width: 400px;
+    height: 500px;
+    align: middle middle;
+    opacity: 0;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
+}
+
+.CenterHudOpen {
+    visibility: visible;
+    opacity: 1;
+    transition-duration: 0.1s;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
+}
+
+#CenterHudBackground {
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+    background-image: url("file://{images}/custom_game/hud_bg_white.jpg");
+    wash-color: #464e51;
+}
+
+#CenterBorderFrame {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+#CenterBorderFrameLeftEdge {
+    background-image: url("file://{images}/custom_game/hud_border_03.png");
+    background-size: 100% 100%;
+    height: 100%;
+    width: 50px;
+}
+
+#CenterBorderFrameRightEdge {
+    background-image: url("file://{images}/custom_game/hud_border_02.png");
+    background-size: 100% 100%;
+    horizontal-align: right;
+    height: 100%;
+    width: 50px;
+}
+
+#CenterBorderFrameBotEdge {
+    background-image: url("file://{images}/custom_game/hud_border_05.png");
+    background-size: 100% 100%;
+    vertical-align: bottom;
+    height: 50px;
+    width: 100%;
+}
+
+#CenterBorderFrameTopEdge {
+    background-image: url("file://{images}/custom_game/hud_border_04.png");
+    background-size: 100% 100%;
+    vertical-align: top;
+    height: 50px;
+    width: 100%;
+}
+
+#CenterBorderFrameTopLeftCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_01.png");
+    background-size: 100% 100%;
+    align: left top;
+    width: 40px;
+    height: 40px;
+}
+
+#CenterBorderFrameTopRightCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_02.png");
+    background-size: 100% 100%;
+    align: right top;
+    width: 40px;
+    height: 40px;
+}
+
+#CenterBorderFrameBotLeftCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_03.png");
+    background-size: 100% 100%;
+    align: left bottom;
+    width: 40px;
+    height: 40px;
+}
+
+#CenterBorderFrameBotRightCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_04.png");
+    background-size: 100% 100%;
+    align: right bottom;
+    width: 40px;
+    height: 40px;
+}
+
+#CenterHeroPanel {
+    width: 200px;
+    height: 200px;
+    /* background-color: red; */
+    align: middle top;
+    margin-top: 100px;
+}
+
+#CenterHeroPanel DOTAScenePanel{
+    width: 100%;
+    height: 100%;
+    clip: rect(0px, 200px, 150px, 0px);
+}
+
+#CenterSlots {
+    width: 300px;
+    height: 300px;
+    /* background-color: red; */
+    align: middle top;
+    margin-top: 30px;
+}
+
+.CenterSlot {
+    width: 53px;
+    height: 53px;
+    align: middle middle;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    border-radius: 5px;
+    /* background-color: rgba(41, 41, 41, 0.5); */
+}
+
+.CenterSlotBorder {
+    width: 100%;
+    height: 100%;
+    border: 2.5px solid darkgray;
+    border-radius: 5px;
+}
+
+.CenterSlotOverlay {
+    width: 100%;
+    height: 100%;
+    /* border: 3px solid red; */
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    border-radius: 5px;
+}
+
+#CenterSlot1 {
+    position: 0px -110px 0px;
+}
+
+#CenterSlot2 {
+    position: 75px -75px 0px;
+}
+
+#CenterSlot3 {
+    position: 110px 0px 0px;
+}
+
+#CenterSlot4 {
+    position: 75px 75px 0px;
+}
+
+#CenterSlot5 {
+    position: 0px 110px 0px;
+}
+
+#CenterSlot6 {
+    position: -75px 75px 0px;
+}
+
+#CenterSlot7 {
+    position: -110px 0px 0px;
+}
+
+#CenterSlot8 {
+    position: -75px -75px 0px;
+}
+
+#CenterSelect {
+    width: 100%;
+    height: 170px;
+    vertical-align: bottom;
+    /* background-color: black; */
+    /* background */
+    padding: 20px;
+}
+
+#CenterSelectInner {
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+    background-image: url("file://{images}/custom_game/hud_bg_white.jpg");
+    wash-color: #373d3f;
+    box-shadow: inset #222222b0 8px 8px 16px 16px;
+    border-radius: 5px;
+}
+
+#CenterSelectList {
+    height: 100%;
+    width: 100%;
+    align: middle middle;
+    flow-children: right-wrap;
+    /* border: 1px solid black; */
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: squish scroll;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+    border-radius: 5px;
+}
+
+
+
+#CenterSelectList.PotentialDropTarget {
+    background-color: gradient( radial, 50% -20%, 0% 0%, 60% 60%, from( #ffffff30 ), to( #FFFFFF00 ) );
+}
+
+#LoadImages {
+    background-image: url("file://{images}/custom_game/blue_gem_01.png");
+    background-image: url("file://{images}/custom_game/red_gem_01.png");
+}

@@ -1,0 +1,580 @@
+
+.ShopAnvil {
+	visibility: collapse;
+}
+
+.AnvilOpen .ShopAnvil {
+	visibility: visible;
+	height: 100%;
+	width: 100%;
+	flow-children: down;
+}
+
+#AnvilTitle {
+	horizontal-align: center;
+	/* background-color: orange; */
+	width: 200px;
+	height: 40px;
+}
+
+.AnvilTitleShown {
+	/* visibility: visible; */
+	text-align: center;
+	horizontal-align: center;
+	font-size: 30;
+	position: 0px 0px 0px;
+	opacity: 1;
+}
+
+.AnvilTitleHidden {
+	text-align: center;
+	horizontal-align: center;
+	font-size: 30;
+	opacity: 0;
+}
+
+.AnvileModeLeftOut {
+	animation-name: move_center_right;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	opacity: 0;
+}
+
+.AnvileModeRightOut {
+	animation-name: move_center_left;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	opacity: 0;
+}
+
+.AnvileModeLeftIn {
+	animation-name: move_left_center;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	opacity: 1;
+	position: 0px 0px 0px;
+}
+
+.AnvileModeRightIn {
+	animation-name: move_right_center;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	opacity: 1;
+	position: 0px 0px 0px;
+}
+
+@keyframes 'move_center_right' {
+	0%
+	{
+		position: 0px 0px 0px;
+		opacity: 1;
+	}
+	25%
+	{
+		opacity: 0.1;
+	}
+	50%
+	{
+		opacity: 0;
+	}
+	100%
+	{
+		position: 200px 0px 0px;
+	}
+}
+
+@keyframes 'move_center_left' {
+	0%
+	{
+		position: 0px 0px 0px;
+		opacity: 1;
+	}
+	25%
+	{
+		opacity: 0.1;
+	}
+	50%
+	{
+		opacity: 0;
+	}
+	100%
+	{
+		position: -200px 0px 0px;
+	}
+}
+
+@keyframes 'move_right_center' {
+	0%
+	{
+		position: 200px 0px 0px;
+		opacity: 0;
+	}
+	50%
+	{
+		opacity: 0.1;
+	}
+	75%
+	{
+		opacity: 1;
+	}
+	100%
+	{
+		position: 0px 0px 0px;
+	}
+}
+
+@keyframes 'move_left_center' {
+	0%
+	{
+		position: -200px 0px 0px;
+		opacity: 0;
+	}
+	50%
+	{
+		opacity: 0.1;
+	}
+	75%
+	{
+		opacity: 1;
+	}
+	100%
+	{
+		position: 0px 0px 0px;
+	}
+}
+
+#AnvilTop {
+	height: 175px;
+	width: 275px;
+	/* background-color: rgba(255, 0, 0, 0.103); */
+	horizontal-align: center;
+}
+
+#AnvilImage {
+	width: 350px;
+	height: 150px;
+	background-image: url("file://{images}/custom_game/anvil_small.png");
+	background-size: 100% 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 12px;
+	horizontal-align: center;
+}
+
+#AnvilOutput {
+	width: 100px;
+	height: 100px;
+	horizontal-align: center;
+}
+
+#AnvilOutput .WeaponFrame {
+	width: 60px;
+    height: 60px;
+	border: 2.5px solid gray;
+	align: middle middle;
+	border-radius: 5px;
+	background-color: rgba(73, 73, 73, 0.075);
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-out;
+}
+
+#AnvilOutput .WeaponFrame.Locked {
+	opacity: 0.05;
+}
+
+.AnvilSelectSlot {
+	width: 60px;
+    height: 60px;
+	border-radius: 5px;
+	background-color: rgba(73, 73, 73, 0.075);
+	border: 2.5px solid gray;
+	transition-property: border, opacity, background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+.AnvilSelectBottom {
+	position: 105px 110px 0px;
+}
+
+.AnvilSelectLeft {
+	border: 2.5px solid gray;
+	position: 55px 20px 0px;
+	opacity: 0.05;
+}
+
+.AnvilSelectLeft:hover:not(.AnvilRotateCounterClockwise) {
+	border: 2.5px solid rgb(214, 214, 214);
+	background-color: rgba(216, 216, 216, 0.075);
+}
+
+.AnvilSelectRight {
+	border: 2.5px solid gray;
+	position: 150px 20px 0px;
+	opacity: 0.05;
+}
+
+.AnvilSelectRight:hover:not(.AnvilRotateClockwise) {
+	border: 2.5px solid rgb(214, 214, 214);
+	background-color: rgba(216, 216, 216, 0.075);
+}
+
+.AnvilSelectLeft.AnvilRotateCounterClockwise {
+	animation-name: left_bot_rotate;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	opacity: 1;
+}
+
+.AnvilSelectLeft.AnvilRotateClockwise {
+	animation-name: right_left_rotate;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-direction: reverse;
+	opacity: 0.05;
+}
+
+@keyframes 'left_bot_rotate' {
+	0%
+	{
+		position: 55px 20px 0px;
+		opacity: 0.05;
+	}
+	50%
+	{
+		position: 55px 80px 0px;
+		opacity: 0.1;
+	}
+	100%
+	{
+		position: 105px 110px 0px;
+		opacity: 1;
+	}
+}
+
+.AnvilSelectRight.AnvilRotateCounterClockwise {
+	animation-name: right_left_rotate;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	opacity: 0.05;
+}
+
+.AnvilSelectRight.AnvilRotateClockwise {
+	animation-name: bot_right_rotate;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-direction: reverse;
+	opacity: 1;
+}
+
+@keyframes 'right_left_rotate' {
+	0%
+	{
+		position: 150px 20px 0px;
+	}
+	100%
+	{
+		position: 55px 20px 0px;
+	}
+}
+
+.AnvilSelectBottom.AnvilRotateCounterClockwise {
+	animation-name: bot_right_rotate;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	opacity: 0.05;
+}
+
+.AnvilSelectBottom.AnvilRotateClockwise {
+	animation-name: left_bot_rotate;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-direction: reverse;
+	opacity: 0.05;
+}
+
+@keyframes 'bot_right_rotate' {
+	0%
+	{
+		position: 105px 110px 0px;
+		opacity: 1;
+	}
+	50%
+	{
+		position: 150px 80px 0px;
+		opacity: 0.1;
+	}
+	100%
+	{
+		position: 150px 20px 0px;
+		opacity: 0.05;
+	}
+}
+
+#AnvilCombineSelect2 {
+	position: 190px 110px 0px;
+	opacity: 0;
+}
+
+#AnvilCombineSelect2.ShowAdditional {
+	animation-name: show_additional;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	opacity: 1;
+}
+
+#AnvilCombineSelect2.HideAdditional {
+	animation-name: show_additional;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-direction: reverse;
+}
+
+@keyframes 'show_additional' {
+	0%
+	{
+		opacity: 0;
+	}
+	75%
+	{
+		opacity: 0;
+	}
+	100%
+	{
+		opacity: 1;
+	}
+}
+
+#AnvilUpgradeSelectBackground {
+	background-image: url("file://{images}/custom_game/upgrade_icon.png");
+}
+
+#AnvilRecycleSelectBackground {
+	background-image: url("file://{images}/custom_game/recycle_icon.png");
+}
+
+#AnvilCombineSelectBackground {
+	background-image: url("file://{images}/custom_game/combine_icon.png");
+}
+
+.AnvilSelectBackground {
+	height: 100%;
+	width: 100%;
+	align: middle middle;
+	background-size: 100% 100%;
+	opacity: 0;
+}
+
+.AnvilSelectLeft .AnvilSelectBackground,
+.AnvilSelectRight .AnvilSelectBackground {
+	opacity: 1;
+}
+
+.AnvilSelectLeft.AnvilRotateCounterClockwise .AnvilSelectBackground {
+	animation-name: show_background;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in;
+	animation-direction: reverse;
+	opacity: 0;
+}
+
+.AnvilSelectRight.AnvilRotateClockwise .AnvilSelectBackground {
+	animation-name: show_background;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in;
+	animation-direction: reverse;
+	opacity: 0;
+}
+
+.AnvilSelectBottom.AnvilRotateClockwise .AnvilSelectBackground {
+	animation-name: show_background;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in;
+	animation-delay: 0.25s;
+	opacity: 0;
+}
+
+.AnvilSelectBottom.AnvilRotateCounterClockwise .AnvilSelectBackground {
+	animation-name: show_background;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in;
+	animation-delay: 0.25s;
+	opacity: 0;
+}
+
+@keyframes 'show_background' {
+	from
+	{
+		opacity: 0;
+	}
+	to
+	{
+		opacity: 1;
+	}
+}
+
+.AnvilSelectBottom.AnvilRotateClockwiseFake {
+	animation-name: bot_right_fake_rotate;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in;
+}
+
+@keyframes 'bot_right_fake_rotate' {
+	0%
+	{
+		position: 105px 110px 0px;
+	}
+	50%
+	{
+		position: 115px 110px 0px;
+	}
+	100%
+	{
+		position: 105px 110px 0px;
+	}
+}
+
+.AnvilSelectBottom.AnvilRotateCounterClockwiseFake {
+	animation-name: bot_left_fake_rotate;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in;
+}
+
+@keyframes 'bot_left_fake_rotate' {
+	0%
+	{
+		position: 105px 110px 0px;
+	}
+	50%
+	{
+		position: 95px 110px 0px;
+	}
+	100%
+	{
+		position: 105px 110px 0px;
+	}
+}
+
+#AnvilButton {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	position: 270px 50px 0px;
+	background-color: rgba(68, 68, 68, 0.075);
+	background-image: url("file://{images}/custom_game/hammer_icon.png");
+	background-size: 100% 100%;
+	border: 2px solid gray;
+}
+
+#AnvilButton:hover {
+	border-color: rgb(161, 161, 161);
+	background-color: rgba(99, 99, 99, 0.075);
+}
+
+#AnvilProgress {
+	height: 100px;
+	width: 50px;
+	position: 155px 20px 0px;
+	opacity: 1;
+}
+
+.AnvilProgressArrow {
+	height: 100%;
+	width: 100%;
+	background-image: url("file://{images}/custom_game/progress.png");
+	clip: rect(0px, 50px, 0px, 0px);
+}
+
+#AnvilProgress.Ongoing .AnvilProgressArrow {
+	animation-name: progress;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	clip: rect(0px, 50px, 100px, 0px);
+	opacity: 1;
+}
+
+#AnvilProgress.Ending .AnvilProgressArrow{
+	clip: rect(0px, 50px, 100px, 0px);
+}
+
+#AnvilProgress.Ending {
+	animation-name: progress_end;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	opacity: 0;
+}
+
+@keyframes 'progress' {
+	from
+	{
+		clip: rect(0px, 50px, 0px, 0px);
+	}
+	to
+	{
+		clip: rect(0px, 50px, 100px, 0px);
+	}
+}
+
+@keyframes 'progress_end' {
+	from
+	{
+		opacity: 1;
+	}
+	to
+	{
+		opacity: 0;
+	}
+}
+
+.AnvilSelectDropBackground {
+	height: 100%;
+	width: 100%;
+}
+
+.PotentialDropTarget.AnvilSelectSlot {
+    background-color: rgba(73, 73, 73, 0.075);
+}
+
+.PotentialDropTarget.AnvilSelectSlot .AnvilSelectDropBackground {
+	background-color: gradient( radial, 50% -20%, 0% 0%, 80% 80%, from( #ffffff30 ), to( #FFFFFF00 ) );
+}
+
+#ShopAnvilParticles {
+	height: 100%;
+	width: 100%;
+	/* background-color: white; */
+	visibility: collapse;
+}
+
+.AnvilOpen #ShopAnvilParticles {
+	visibility: visible;
+	height: 100%;
+	width: 100%;
+}
+
+.Scene_Parent {
+	height: 100%;
+	width: 100%;
+}
+
+.Scene_Parent DOTAScenePanel {
+	height: 100%;
+	width: 100%;
+}
+
+#AnvilWork {
+	height: 400px;
+	width: 400px;
+	margin-top: 0px;
+	horizontal-align: center;
+}
+
+#AnvilFinish {
+	height: 200px;
+	width: 200px;
+	margin-top: 360px;
+	/* background-color: rgba(255, 255, 255, 0.116); */
+	horizontal-align: center;
+}

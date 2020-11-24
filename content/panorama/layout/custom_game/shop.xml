@@ -1,0 +1,114 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/weapon_base.js" />
+        <include src="file://{resources}/scripts/custom_game/shop.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.css" />
+        <include src="file://{resources}/styles/custom_game/shop.css" />
+        <include src="file://{resources}/styles/custom_game/shop_anvil.css" />
+        <include src="file://{resources}/styles/custom_game/weapon_base.css" />
+    </styles>
+    <snippets>
+        <snippet name="WeaponPanel">
+            <Panel class="WeaponPanel" draggable="true">
+                <Image class="WeaponImage" />
+            </Panel>
+        </snippet>
+
+        <snippet name="ShopBorders">
+            <Panel class="ShopBorder" hittest="false">
+                <Panel id="ShopBorderFrameLeftEdge" hittest="false" />
+                <Panel id="ShopBorderFrameBotEdge" hittest="false" />
+                <Panel id="ShopBorderFrameTopEdge" hittest="false" />
+                <Panel id="ShopBorderFrameTopLeftCorner" hittest="false" />
+                <Panel id="ShopBorderFrameBotLeftCorner" hittest="false" />
+            </Panel>
+        </snippet>
+
+        <snippet name="MainShop">
+            <Panel class="MainShop" hittest="true">
+                <Panel id="TopShop" class="MarketOpen">
+                </Panel>
+                <Panel id="BotShop">
+                    <Panel id="ShopSelectInner" />
+                    <Panel id="ShopSelectList" >
+                        <!-- new weapon panels get added here dynamically with js -->
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="ShopMarket">
+            <Panel class="ShopMarket">
+                <Panel id="MarketOffers">
+
+                </Panel>
+                <Panel id="MarketBids">
+
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="ShopAnvil">
+            <Panel class="ShopAnvil">
+                <Panel id="AnvilTitle">
+                    <Label id="AnvilTitleUpgrade" text="Upgrade" class="AnvilTitleShown"/>
+                    <Label id="AnvilTitleRecyle" text="Recyle" class="AnvilTitleHidden"/>
+                    <Label id="AnvilTitleCombine" text="Combine" class="AnvilTitleHidden"/>
+                </Panel>
+                <Panel id="AnvilTop">
+                    <Panel id="AnvilSelectBackground" />
+                    <Panel id="AnvilUpgradeSelect" class="AnvilSelectBottom AnvilSelectSlot" onactivate="SelectAnvil('AnvilUpgradeSelect');">
+                        <Panel id="AnvilUpgradeSelectBackground" class="AnvilSelectBackground" />
+                        <Panel class="AnvilSelectDropBackground" />
+                    </Panel>
+                    <Panel id="AnvilRecycleSelect" class="AnvilSelectLeft AnvilSelectSlot" onactivate="SelectAnvil('AnvilRecycleSelect');">
+                        <Panel id="AnvilRecycleSelectBackground" class="AnvilSelectBackground" />
+                         <Panel class="AnvilSelectDropBackground" />
+                    </Panel>
+                    <Panel id="AnvilCombineSelect" class="AnvilSelectRight AnvilSelectSlot" onactivate="SelectAnvil('AnvilCombineSelect');">
+                        <Panel id="AnvilCombineSelectBackground" class="AnvilSelectBackground" />
+                         <Panel class="AnvilSelectDropBackground" />
+                    </Panel>
+                    <Panel id="AnvilCombineSelect2" class="AnvilSelectSlot" >
+                         <Panel class="AnvilSelectDropBackground" />
+                    </Panel>
+                </Panel>
+                <Panel id="AnvilImage">
+                    <Panel id="AnvilProgress" >
+                        <Panel class="AnvilProgressArrow" />
+                    </Panel>
+                    <Panel id="AnvilButton" onactivate="StartProgress();"/>
+                </Panel>
+                <Panel id="AnvilOutput">
+                    <Panel class="WeaponFrame" />
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="AnvilParticles">
+            <Panel hittest="false">
+                <Panel id="AnvilWork" hittest="false"/>
+                <Panel id="AnvilFinish" hittest="false" />
+            </Panel>
+        </snippet>
+
+        <snippet name="Scene_AnvilWork">
+            <Panel class="Scene_Parent" hittest="false">
+                <DOTAScenePanel id="ScenePanel_AnvilWork" class="SceneLoaded" map="scenes/hud/anvil_work" camera="camera_1" hittest="false"/>
+            </Panel>
+        </snippet>
+
+        <snippet name="Scene_AnvilFinish">
+            <Panel class="Scene_Parent" hittest="false">
+                <DOTAScenePanel id="ScenePanel_AnvilFinish" class="SceneLoaded" map="scenes/hud/anvil_finish" camera="camera_1" hittest="false"/>
+            </Panel>
+        </snippet>
+
+    </snippets>
+
+    <Panel hittest="false" class="ShopHud">
+
+    </Panel>
+</root>

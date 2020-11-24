@@ -1,0 +1,8 @@
+test_arena
+{
+	material materials/overviews/test_arena.vmat
+	pos_x -4688
+	pos_y 112
+	scale 5.712
+}
+

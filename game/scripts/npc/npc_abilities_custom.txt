@@ -1,4 +1,7 @@
 #base "heroes/meepo.kv"
+#base "abilities/hero_spin.kv"
+#base "abilities/weapons.kv"
+#base "abilities/configs.kv"
 
 "DOTAAbilities"
 {

@@ -1,0 +1,76 @@
+<root>
+    <scripts>
+		<include src="file://{resources}/scripts/custom_game/weapon_base.js" />
+        <include src="file://{resources}/scripts/custom_game/center_hud.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.css" />
+        <include src="file://{resources}/styles/custom_game/center_hud.css" />
+		<include src="file://{resources}/styles/custom_game/weapon_base.css" />
+    </styles>
+
+    <snippets>
+		<snippet name="WeaponPanel">
+			<Panel class="WeaponPanel" draggable="true">
+				<Image class="WeaponImage" />
+			</Panel>
+		</snippet>
+    </snippets>
+
+    <Panel hittest="false" class="CenterHud">
+		<Panel id="CenterHudBackground" />
+		<Panel id="CenterHeroPanel">
+			<DOTAScenePanel style="width:400px;height:400px;" unit="npc_dota_hero_wisp" particleonly="false"/>
+		</Panel>
+		<Panel id="CenterSlots">
+			<Panel id="CenterSlot1" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+			<Panel id="CenterSlot2" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+			<Panel id="CenterSlot3" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+			<Panel id="CenterSlot4" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+			<Panel id="CenterSlot5" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+			<Panel id="CenterSlot6" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+			<Panel id="CenterSlot7" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+			<Panel id="CenterSlot8" class="CenterSlot">
+				<Panel class="CenterSlotBorder" hittest="false" />
+				<Panel class="CenterSlotOverlay" hittest="false" />
+			</Panel>
+		</Panel>
+		<Panel id="CenterSelect">
+			<Panel id="CenterSelectInner" />
+			<Panel id="CenterSelectList" >
+				<!-- new weapon panels get added here dynamically with js -->
+			</Panel>
+		</Panel>
+		<Panel id="CenterBorderFrame" hittest="false">
+			<Panel id="CenterBorderFrameLeftEdge" />
+			<Panel id="CenterBorderFrameRightEdge" />
+			<Panel id="CenterBorderFrameBotEdge" />
+			<Panel id="CenterBorderFrameTopEdge" />
+			<Panel id="CenterBorderFrameTopLeftCorner" />
+			<Panel id="CenterBorderFrameTopRightCorner" />
+			<Panel id="CenterBorderFrameBotLeftCorner" />
+			<Panel id="CenterBorderFrameBotRightCorner" />
+		</Panel>
+    </Panel>
+</root>

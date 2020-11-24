@@ -2,7 +2,9 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/manifest.js" />
     </scripts>
+
     <Panel>
-        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/center_hud.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/shop.xml" />
     </Panel>
 </root>

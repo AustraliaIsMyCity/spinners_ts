@@ -3,11 +3,12 @@
         "rootDir": ".",
         "target": "esnext",
         "lib": ["esnext"],
-        "types": ["dota-lua-types"],
+        "types": ["dota-lua-types/normalized"],
         "plugins": [{ "transform": "dota-lua-types/transformer" }],
         "moduleResolution": "node",
         "experimentalDecorators": true,
-        "strict": true
+        "strict": true,
+        "module": "commonjs"
     },
     "tstl": {
         "luaTarget": "JIT",
