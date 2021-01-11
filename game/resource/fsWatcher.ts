@@ -7,7 +7,7 @@ import { LocalizationData } from './localizationInterfaces';
 
 let completeData: {[path: string]: LocalizationData} = {};
 
-let watcher = watch("./data", {recursive: true})
+let watcher = watch(["./data", "./localizationCompiler.js"], {recursive: true})
 watcher.on("change", (eventType ?: 'update' | 'remove' | undefined, filePath ?: string) => {
 	if (!filePath) return;
 	let match = /(.*[\/|\\](\w+)).js/g.exec(filePath);

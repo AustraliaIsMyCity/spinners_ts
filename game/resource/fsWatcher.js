@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // import watch from 'node-watch';
 var watch = require("node-watch");
 var completeData = {};
-var watcher = watch("./data", { recursive: true });
+var watcher = watch(["./data", "./localizationCompiler.js"], { recursive: true });
 watcher.on("change", function (eventType, filePath) {
     if (!filePath)
         return;

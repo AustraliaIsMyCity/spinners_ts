@@ -1,9 +1,7 @@
-import { AbilityLocalization, LocalizationData } from "../localizationInterfaces";
+import { AbilityLocalization, LocalizationData } from "@localization/localizationInterfaces";
 
 export function GenerateLocalizationData(): LocalizationData
 {
-    // This section can be safely ignored, as it is only logic.
-    //#region Localization logic
     // Arrays
     const Abilities: Array<AbilityLocalization> = new Array<AbilityLocalization>();
 

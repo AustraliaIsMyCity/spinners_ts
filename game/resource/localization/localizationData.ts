@@ -1,4 +1,4 @@
-import { AbilityLocalization, HeroTalents, LocalizationData, ModifierLocalization, StandardLocalization, Weapons } from "./localizationInterfaces";
+import { AbilityLocalization, HeroTalents, LocalizationData, ModifierLocalization, StandardLocalization, Weapons } from "@localization/localizationInterfaces";
 
 export function GenerateLocalizationData(): LocalizationData
 {
