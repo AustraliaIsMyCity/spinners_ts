@@ -1,4 +1,5 @@
 import { RotateVector2D } from "../lib/util";
+import { Arena } from "./arena";
 import {PathModifierResult, ProjectileData, ProjectileOptions, ProjectileState} from "./custom_projectile_enums";
 import { ProjectilePathModifier } from "./path_modifier";
 
@@ -45,6 +46,7 @@ function remove() {
 		let particle: ParticleID | undefined = data[element].particleID;
 		if (particle !== undefined) {
 			ParticleManager.DestroyParticle(particle, false);
+			ParticleManager.ReleaseParticleIndex(particle);
 		}
 		currentIDs = currentIDs.filter(obj => obj !== element);
 		delete data[element];
@@ -67,6 +69,7 @@ function start() {
 }
 
 function think():number {
+	if (GameRules.IsGamePaused()) return 1/tickSpeed;
 	currentIDs.forEach(element => {
 		let projData: ProjectileData = data[element];
 		if (projData == undefined) {
@@ -75,6 +78,9 @@ function think():number {
 
 		// mark projectile as dead if it traveled far enough;
 		if (projData.curDistance >= projData.distance) {
+			projData.state = ProjectileState.DEAD;
+		}
+		if (Arena.IsOutside(projData.curLoc)) {
 			projData.state = ProjectileState.DEAD;
 		}
 
@@ -121,7 +127,7 @@ function think():number {
 			});
 
 			if ((results.length > 0) && projData.destroyOnHit) {
-				projData.state = ProjectileState.DEAD;
+				newState = ProjectileState.DEAD;
 			}
 
 			let particle: ParticleID;
@@ -132,7 +138,8 @@ function think():number {
 			} else {
 				particle = projData.particleID!;
 			}
-			ParticleManager.SetParticleControl(particle, 3, newLoc);
+			// ParticleManager.SetParticleControl(particle, 3, newLoc);
+			ParticleManager.SetParticleControl(particle, 1, (projData.curDirection * projData.curSpeed) as Vector);
 			if (projData.hasOwnProperty("visionRadius")) {
 				AddFOWViewer(caster.GetTeamNumber(), newLoc, projData.visionRadius!, 2/tickSpeed, false);
 			}

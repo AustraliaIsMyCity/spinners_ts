@@ -1,0 +1,8 @@
+small_arena
+{
+	material materials/overviews/small_arena.vmat
+	pos_x -1746
+	pos_y 2026
+	scale 3.448
+}
+

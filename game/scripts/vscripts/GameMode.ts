@@ -1,3 +1,6 @@
+import { Arena } from "./core/arena";
+import { GameModeManager } from "./core/game_mode_manager";
+import { WaveManager } from "./core/wave_manager";
 import { WeaponManager } from "./core/weapon_manager";
 import { reloadable } from "./lib/tstl-utils";
 
@@ -8,14 +11,6 @@ declare global {
 		Addon: GameMode;
 	}
 }
-
-// import { BaseAbility } from "./lib/dota_ts_adapter";
-
-// declare module "./lib/dota_ts_adapter" {
-// 	interface BaseAbility {
-// 		IsInnate(): boolean;
-// 	}
-// }
 
 @reloadable
 export class GameMode {
@@ -45,13 +40,6 @@ export class GameMode {
 	public OnStateChange(): void {
 		const state = GameRules.State_Get();
 
-		// Add 4 bots to lobby in tools
-		if (IsInToolsMode() && state == GameState.CUSTOM_GAME_SETUP) {
-			for (let i = 0; i < 4; i++) {
-				Tutorial.AddBot("npc_dota_hero_lina", "", "", false);
-			}
-		}
-
 		// Start game once pregame hits
 		if (state == GameState.PRE_GAME) {
 			Timers.CreateTimer(0.2, () => this.StartGame());
@@ -61,7 +49,10 @@ export class GameMode {
 	private StartGame(): void {
 		print("Game starting!");
 
-		WeaponManager.RegisterListener();
+		Arena.Init();
+		WeaponManager.Init();
+		WaveManager.Init();
+		GameModeManager.Init();
 		// Do some stuff here
 	}
 
@@ -70,6 +61,10 @@ export class GameMode {
 		print("Script reloaded!");
 
 		// Do some stuff here
+		Arena.Init();
+		WeaponManager.Init();
+		WaveManager.Init();
+		GameModeManager.Init();
 	}
 
 	private OnNpcSpawned(event: NpcSpawnedEvent) {
@@ -81,6 +76,11 @@ export class GameMode {
 					ability.SetLevel(1);
 				}
 			}
+		}
+		if (unit.IsRealHero() && unit.GetUnitName() == "npc_dota_hero_wisp") {
+			Timers.CreateTimer(1, () => GameModeManager.SendWelcome());
+			let playerID = unit.GetPlayerID();
+			WeaponManager.InitForPlayer(playerID);
 		}
 	}
 }

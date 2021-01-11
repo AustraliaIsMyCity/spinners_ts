@@ -1,7 +1,5 @@
 $.Msg("Center Hud loaded");
 
-var weaponSlots: PanoramaWeaponSlot[] = [];
-
 function ShowCenterHud(event: object) {
     let centerHud = $("#CenterHudBackground").GetParent();
     let open = centerHud?.GetAttributeInt("open", 0);
@@ -21,6 +19,7 @@ function AddWeapon(weapon: PanoramaWeapon) {
     // weaponList.RemoveAndDeleteChildren();
     let weaponPanel = weapon.exportPanel(PanoramaWeaponPanelType.CENTER);
     weaponPanel.SetParent(weaponList);
+    weapon.registerQuickMoveCallback(CenterQuickMove);
 }
 
 function RemoveWeapon(id: number) {
@@ -37,22 +36,41 @@ function RemoveWeapon(id: number) {
 function InitSlots() {
     for (let index = 1; index <= 8; index++) {
         let slotPanel = $("#CenterSlot" + index);
-        weaponSlots[index] = new PanoramaWeaponSlot(slotPanel, index);
+        let weaponSlot = new PanoramaWeaponSlot(slotPanel, index);
+        weaponSlot.setDropCallback(CenterWeaponDrop);
     }
     let listPanel = $("#CenterSelectList");
     let weaponList = new PanoramaWeaponList(listPanel);
+    weaponList.setDropCallback(CenterWeaponDrop);
 }
 
-function RefreshHud() {
-    $.Msg("Refresh Center Hud!")
-    for (let index = 1; index <= 8; index++) {
-        weaponSlots[index].panel.SetAttributeInt("registered", 0);
-        weaponSlots[index].registerDragDropEvents();
-    }
+function CenterWeaponDrop(curPanel: Panel, weaponPanel: Panel) {
+    if (weaponPanel.weaponRef) {
+		weaponPanel.weaponRef.registerQuickMoveCallback(CenterQuickMove);
+	}
+}
+
+function CenterQuickMove(curPanel: Panel, parentPanel: Panel) {
+    let parentID = parentPanel.id;
     let listPanel = $("#CenterSelectList");
-    let weaponList = new PanoramaWeaponList(listPanel);
-    weaponList.panel.SetAttributeInt("registered", 0);
-    weaponList.registerDragDropEvents();
+    let targetPanel = listPanel;
+    if (parentID == "CenterSelectList") {
+        let nextSlot = GetNextFreeSlot();
+        if (!nextSlot) return;
+        targetPanel = nextSlot;
+    }
+    if(curPanel.weaponRef && targetPanel.weaponBaseRef) {
+        targetPanel.weaponBaseRef.simulateDrop(curPanel.weaponRef);
+    }
+}
+
+function GetNextFreeSlot() {
+    for (let index = 1; index <= 8; index++) {
+        let slotPanel = $("#CenterSlot" + index);
+        if (slotPanel.FindChildrenWithClassTraverse("WeaponPanel").length == 0) {
+            return slotPanel;
+        }
+    }
 }
 
 InitSlots();
@@ -67,4 +85,3 @@ GameEvents.Subscribe("add_weapon", event => {
 GameEvents.Subscribe("remove_weapon", event => {
 	RemoveWeapon(event.id);
 });
-GameEvents.Subscribe("refresh_gui", RefreshHud);

@@ -219,4 +219,14 @@
 #LoadImages {
     background-image: url("file://{images}/custom_game/blue_gem_01.png");
     background-image: url("file://{images}/custom_game/red_gem_01.png");
+    background-image: url("file://{images}/custom_game/violet_gem_01.png");
+    background-image: url("file://{images}/custom_game/lightblue_gem_01.png");
+    background-image: url("file://{images}/custom_game/beige_gem_01.png");
+    background-image: url("file://{images}/custom_game/brown_gem_01.png");
+    background-image: url("file://{images}/custom_game/black_gem_01.png");
+    background-image: url("file://{images}/custom_game/green_gem_01.png");
+}
+
+:focus {
+    border: 3px solid red;
 }

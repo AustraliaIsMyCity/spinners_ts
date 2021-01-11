@@ -1,10 +1,16 @@
 <root>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/manifest.js" />
+        <include src="file://{resources}/scripts/custom_game/definitions.js" />
+        <include src="file://{resources}/scripts/custom_game/camera_movements.js" />
     </scripts>
 
     <Panel>
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/center_hud.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/shop.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/wave_counter.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/welcome.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/speech_bubbles.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/perks.xml" />
     </Panel>
 </root>

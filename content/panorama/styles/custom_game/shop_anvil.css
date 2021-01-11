@@ -367,6 +367,46 @@
 	opacity: 0;
 }
 
+#AnvilAmountSelect {
+	height: 50px;
+	width: 50px;
+	position: 190px 125px 0px;
+	font-size: 25px;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+	opacity: 0;
+}
+
+#AnvilAmountSelect.ShowAdditional {
+	animation-name: show_additional;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	opacity: 1;
+}
+
+#AnvilAmountSelect.HideAdditional {
+	animation-name: show_additional;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-direction: reverse;
+}
+
+@keyframes 'show_additional' {
+	0%
+	{
+		opacity: 0;
+	}
+	75%
+	{
+		opacity: 0;
+	}
+	100%
+	{
+		opacity: 1;
+	}
+}
+
 .AnvilSelectLeft .AnvilSelectBackground,
 .AnvilSelectRight .AnvilSelectBackground {
 	opacity: 1;
@@ -471,6 +511,52 @@
 #AnvilButton:hover {
 	border-color: rgb(161, 161, 161);
 	background-color: rgba(99, 99, 99, 0.075);
+}
+
+#AnvilCost {
+	align: right middle;
+	position: -10px 55px 0px;
+	height: 30px;
+	width: 75px;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+	/* background-color: yellow; */
+	opacity: 0;
+}
+
+#AnvilCost.Shown {
+	opacity: 1;
+}
+
+#AnvilCostLabel {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: right;
+	horizontal-align: right;
+	vertical-align: center;
+	min-width: 60px;
+	margin-right: 22px;
+	width: 100%;
+	text-overflow: shrink;
+	transition-property: color;
+	transition-duration: 0.1s;
+	transition-timing-function: linear;
+}
+
+#AnvilCost.Fail #AnvilCostLabel {
+	transition-duration: 1s;
+	color: rgb(105, 0, 0);
+}
+
+#AnvilCostIcon {
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-size: 100% 100%;
+	width: 20px;
+	height: 20px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-bottom: 2px;
 }
 
 #AnvilProgress {

@@ -14,6 +14,8 @@ export class Slot {
 	tickVal: number = -1;
 	waiting: boolean = false;
 
+	offset?: number;
+
 	constructor(unit: CDOTA_BaseNPC, pos: Vector, id: number) {
 		this.curLoc = pos;
 		this.id = id;
@@ -42,12 +44,20 @@ export class Slot {
 				this.waiting = false;
 			}
 
-			if ((this.tickVal % this.interval) == 0) {
+			let parentLoc: Vector = this.parent.GetAbsOrigin();
+			let direction: Vector = ((parentLoc - this.curLoc) as Vector).Normalized();
+			direction = Vector(-direction.x, -direction.y, 0);
+			this.dummy.SetForwardVector(direction);
+
+			if ((this.offset) && (((this.tickVal + (this.offset * 60)) % this.interval) < 1)) {
 				if (this.weapon !== undefined) {
 					let parentLoc: Vector = this.parent.GetAbsOrigin();
-					let direction: Vector = ((parentLoc - this.curLoc) as Vector).Normalized();
-					direction = Vector(-direction.x, -direction.y, 0);
-					this.weapon.wOnAttack(this.curLoc, direction);
+					this.weapon.wOnPreAttack(parentLoc, this.dummy);
+				}
+			}
+			if ((this.tickVal % this.interval) < 1) {
+				if (this.weapon !== undefined) {
+					this.weapon.wOnAttack(this.curLoc, direction, this.dummy);
 				}
 				this.tickVal = 0;
 			}
@@ -56,13 +66,14 @@ export class Slot {
 	}
 
 	public load(weapon: BaseWeapon) {
-		print(" Slot LOAD", weapon.wGetModel());
 		this.weapon = weapon;
 		this.dummy.SetModel(weapon.wGetModel());
 		this.dummy.SetModelScale(weapon.wGetModelScale());
 		this.interval = weapon.wGetAttackInterval() * 60;
+		this.offset = weapon.wGetPreAttackOffset();
 		this.tickVal = 0;
 		this.waiting = true;
+		print("Loaded!");
 	}
 
 	public unload() {

@@ -1,3 +1,4 @@
+#base "units/neutrals.kv"
 #base "units/npc_dota_dummy_unit.kv"
 
 "DOTAUnits"

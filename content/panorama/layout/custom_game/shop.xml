@@ -59,30 +59,35 @@
                 </Panel>
                 <Panel id="AnvilTop">
                     <Panel id="AnvilSelectBackground" />
-                    <Panel id="AnvilUpgradeSelect" class="AnvilSelectBottom AnvilSelectSlot" onactivate="SelectAnvil('AnvilUpgradeSelect');">
+                    <Label id="AnvilAmountSelect" class="ShowAdditional" text="x1" onactivate="SelectUpgradeAmount()" />
+                    <Button id="AnvilUpgradeSelect" class="AnvilSelectBottom AnvilSelectSlot" onactivate="SelectAnvil('AnvilUpgradeSelect');">
                         <Panel id="AnvilUpgradeSelectBackground" class="AnvilSelectBackground" />
                         <Panel class="AnvilSelectDropBackground" />
-                    </Panel>
-                    <Panel id="AnvilRecycleSelect" class="AnvilSelectLeft AnvilSelectSlot" onactivate="SelectAnvil('AnvilRecycleSelect');">
+                    </Button>
+                    <Button id="AnvilRecycleSelect" class="AnvilSelectLeft AnvilSelectSlot" onactivate="SelectAnvil('AnvilRecycleSelect');">
                         <Panel id="AnvilRecycleSelectBackground" class="AnvilSelectBackground" />
-                         <Panel class="AnvilSelectDropBackground" />
-                    </Panel>
-                    <Panel id="AnvilCombineSelect" class="AnvilSelectRight AnvilSelectSlot" onactivate="SelectAnvil('AnvilCombineSelect');">
+                        <Panel class="AnvilSelectDropBackground" />
+                    </Button>
+                    <Button id="AnvilCombineSelect" class="AnvilSelectRight AnvilSelectSlot" onactivate="SelectAnvil('AnvilCombineSelect');">
                         <Panel id="AnvilCombineSelectBackground" class="AnvilSelectBackground" />
-                         <Panel class="AnvilSelectDropBackground" />
-                    </Panel>
+                        <Panel class="AnvilSelectDropBackground" />
+                    </Button>
                     <Panel id="AnvilCombineSelect2" class="AnvilSelectSlot" >
-                         <Panel class="AnvilSelectDropBackground" />
+                        <Panel class="AnvilSelectDropBackground" />
                     </Panel>
                 </Panel>
                 <Panel id="AnvilImage">
                     <Panel id="AnvilProgress" >
                         <Panel class="AnvilProgressArrow" />
                     </Panel>
-                    <Panel id="AnvilButton" onactivate="StartProgress();"/>
+                    <Button id="AnvilButton" onactivate="StartProgress();"/>
+                    <Panel id="AnvilCost" >
+                        <Label id="AnvilCostLabel" text="100" />
+                        <Panel id="AnvilCostIcon" />
+                    </Panel>
                 </Panel>
                 <Panel id="AnvilOutput">
-                    <Panel class="WeaponFrame" />
+                    <Panel id="AnvilOutputFrame" class="WeaponFrame" />
                 </Panel>
             </Panel>
         </snippet>

@@ -32,13 +32,23 @@ gridMainTabs.style.marginLeft = "20px";
 (gridMainTabs.FindChild("GridUpgradesTab")!.Children()[0] as LabelPanel).text = "Anvil";
 (gridMainTabs.FindChildTraverse("GridNeutralsTab")!.Children()[0] as LabelPanel).text = "Altar";
 
-shop.FindChildTraverse("GuideFlyout")!.style.width = "0px";
+// shop.FindChildTraverse("GuideFlyout")!.style.width = "0px";
+let guideFlyout = shop.FindChildTraverse("GuideFlyout")!;
+guideFlyout.FindChild("GuideFlyoutContainer")!.style.visibility = "collapse";
+guideFlyout.FindChild("ItemsArea")!.style.visibility = "collapse";
+
+var upgradeAmountIndex = 0;
+const upgradeAmount = [1, 2, 5, 10, -1];
+const upgradeAmountName = ["x1", "x2", "x5", "x10", "MAX"];
+var maxAmount = 0;
+var actionCost = 0;
+
+var curOpenTab: "Market" | "Anvil" | "Altar" = "Market";
 
 function InitShop() {
 	let gridHeight = gridMainShop.actuallayoutheight;
 
 	if (gridHeight == 0) {
-		$.Msg("Wait for shop!");
 		$.Schedule(0.1, InitShop);
 		return;
 	}
@@ -65,6 +75,9 @@ function InitShop() {
 		let botShop = limiterContainer.FindChildTraverse("BotShop")!;
 		let weaponList = botShop.FindChild("ShopSelectList")!;
 		let newList = new PanoramaWeaponList(weaponList);
+		newList.setDropCallback(AnvilWeaponDrop);
+
+		GameEvents.SendCustomGameEventToServer("request_shop_weapon_sync", {});
 	}
 
 	let topShop = limiterContainer.FindChildTraverse("TopShop")!;
@@ -87,21 +100,31 @@ function InitShop() {
 		shopAnvil = newContainer;
 
 		let upgradePanel = shopAnvil.FindChildTraverse("AnvilUpgradeSelect")!;
-		new PanoramaWeaponSlot(upgradePanel);
+		let upgradeWeaponPanel = new PanoramaWeaponSlot(upgradePanel);
+		upgradeWeaponPanel.setDropCallback(AnvilWeaponDrop);
+		upgradeWeaponPanel.setRemoveCallback(AnvilWeaponRemove);
+
 		let recyclePanel = shopAnvil.FindChildTraverse("AnvilRecycleSelect")!;
-		new PanoramaWeaponSlot(recyclePanel);
+		let recycleWeaponPanel = new PanoramaWeaponSlot(recyclePanel);
+		recycleWeaponPanel.setDropCallback(AnvilWeaponDrop);
+		recycleWeaponPanel.setRemoveCallback(AnvilWeaponRemove);
 		recyclePanel.AddClass("Locked");
+
 		let combinePanel = shopAnvil.FindChildTraverse("AnvilCombineSelect")!;
-		new PanoramaWeaponSlot(combinePanel);
+		let combineWeaponPanel = new PanoramaWeaponSlot(combinePanel);
+		combineWeaponPanel.setDropCallback(AnvilWeaponDrop);
+		combineWeaponPanel.setRemoveCallback(AnvilWeaponRemove);
 		combinePanel.AddClass("Locked");
+
 		let combinePanel2 = shopAnvil.FindChildTraverse("AnvilCombineSelect2")!;
-		new PanoramaWeaponSlot(combinePanel2);
+		let combineWeaponPanel2 = new PanoramaWeaponSlot(combinePanel2);
+		combineWeaponPanel2.setDropCallback(AnvilWeaponDrop);
 		combinePanel2.AddClass("Locked");
 
 		let anvilOutput = shopAnvil.FindChildTraverse("AnvilOutput")!;
 		let outputFrame = anvilOutput.Children()[0];
 
-		new PanoramaWeaponSlot(outputFrame);
+		let outputFrameWeaponPanel = new PanoramaWeaponSlot(outputFrame);
 		outputFrame.AddClass("Locked");
 	}
 
@@ -112,6 +135,14 @@ function InitShop() {
 		newContainer.BLoadLayoutSnippet("AnvilParticles");
 		newContainer.SetParent(topShop);
 		anvilParticles = newContainer;
+	}
+
+	let quickUpgrade = guideFlyout.FindChild("QuickUpgrade");
+	if (quickUpgrade == null) {
+		$.Msg("New Quick Upgrade!");
+		let newContainer = $.CreatePanel("Panel", $.GetContextPanel(), "QuickUpgrade");
+		newContainer.BLoadLayoutSnippet("QuickUpgrade");
+		newContainer.SetParent(guideFlyout);
 	}
 }
 
@@ -130,16 +161,19 @@ function CheckShopChange(panel: Panel | null) {
 		topShop.RemoveClass("AnvilOpen");
 		topShop.RemoveClass("AltarOpen");
 		topShop.AddClass("MarketOpen");
+		curOpenTab = "Market";
 	}
 	if (panel.BHasClass("ShowUpgradeItemsTab")) {
 		topShop.RemoveClass("MarketOpen");
 		topShop.RemoveClass("AltarOpen");
 		topShop.AddClass("AnvilOpen");
+		curOpenTab = "Anvil";
 	}
 	if (panel.BHasClass("ShowNeutralItemsTab")) {
 		topShop.RemoveClass("MarketOpen");
 		topShop.RemoveClass("AnvilOpen");
 		topShop.AddClass("AltarOpen");
+		curOpenTab = "Altar";
 	}
 }
 
@@ -161,6 +195,7 @@ function SelectAnvil(panelID: string) {
 	let rightPanel = anvilTop.FindChildrenWithClassTraverse("AnvilSelectRight")[0];
 	let bottomPanel = anvilTop.FindChildrenWithClassTraverse("AnvilSelectBottom")[0];
 	let otherPanel = anvilTop.FindChild("AnvilCombineSelect2")!;
+	let amountPanel = anvilTop.FindChild("AnvilAmountSelect")!;
 
 	if (bottomPanel.FindChildrenWithClassTraverse("WeaponPanel").length > 0 ||
 	otherPanel.FindChildrenWithClassTraverse("WeaponPanel").length > 0) {
@@ -195,6 +230,14 @@ function SelectAnvil(panelID: string) {
 		otherPanel.AddClass("HideAdditional");
 		otherPanel.RemoveClass("ShowAdditional");
 		otherPanel.AddClass("Locked");
+	}
+ 
+	if ((nextLabel as LabelPanel).text == "Upgrade") {
+		amountPanel.AddClass("ShowAdditional");
+		amountPanel.RemoveClass("HideAdditional");
+	} else {
+		amountPanel.AddClass("HideAdditional");
+		amountPanel.RemoveClass("ShowAdditional");
 	}
 
 	bottomPanel.AddClass("Locked");
@@ -256,10 +299,136 @@ function GetNextTitle(curID: string, direction: boolean):string {
 	return titles[nextIndex];
 }
 
+function SelectUpgradeAmount() {
+	upgradeAmountIndex += 1;
+	if (upgradeAmountIndex >= upgradeAmount.length) {
+		upgradeAmountIndex = 0;
+	}
+	let anvilTop = limiterContainer.FindChildTraverse("AnvilTop")!;
+	let amountPanel = anvilTop.FindChild("AnvilAmountSelect")! as LabelPanel;
+	amountPanel.text = upgradeAmountName[upgradeAmountIndex];
+	UpdateAnvilCostPrepare();
+}
+
+function UpdateAnvilCostPrepare() {
+	let anvilTop = limiterContainer.FindChildTraverse("AnvilTop")!;
+	let bottomPanel = anvilTop.FindChildrenWithClassTraverse("AnvilSelectBottom")[0];
+	let childs = bottomPanel.FindChildrenWithClassTraverse("WeaponPanel");
+	if (childs.length == 0) {
+		return;
+	}
+
+	let weaponPanel = childs[0];
+	let id = weaponPanel.GetAttributeInt("weaponID", -1);
+	let costType = "Combine";
+	if (bottomPanel.id == "AnvilUpgradeSelect") {
+		costType = "Upgrade";
+	} else if (bottomPanel.id == "AnvilRecycleSelect") {
+		costType = "Recycle";
+	}
+	UpdateAnvilCost(id, costType);
+}
+
+function AnvilWeaponDrop(curPanel: Panel, weaponPanel: Panel) {
+	if (["AnvilUpgradeSelect", "AnvilRecycleSelect", "AnvilCombineSelect", "AnvilCombineSelect2", "ShopSelectList"].indexOf(curPanel.id) < 0) {
+		return;
+	}
+	if (weaponPanel.weaponRef) {
+		weaponPanel.weaponRef.registerQuickMoveCallback(ShopQuickMove);
+	}
+	if (["AnvilUpgradeSelect", "AnvilRecycleSelect", "AnvilCombineSelect"].indexOf(curPanel.id) < 0) {
+		return;
+	}
+
+	let id = weaponPanel.GetAttributeInt("weaponID", -1);
+	let costType = "Combine";
+	if (curPanel.id == "AnvilUpgradeSelect") {
+		costType = "Upgrade";
+	} else if (curPanel.id == "AnvilRecycleSelect") {
+		costType = "Recycle";
+	}
+	UpdateAnvilCost(id, costType);
+}
+
+function UpdateAnvilCost(id: number, costType: string) {
+	let table = CustomNetTables.GetTableValue("weapon_data", id);
+	if (!table) {
+		return;
+	}
+	let money = "";
+	if (costType == "Upgrade") {
+		let amount = upgradeAmount[upgradeAmountIndex];
+		let cost = 0;
+		if (amount > 0) {
+			for (let index = table.level; index < (table.level + amount); index++) {
+				cost += table.upgrade_cost[index + 1];
+			}
+		} else {
+			let curGold = Players.GetGold(Players.GetLocalPlayer());
+			let index = table.level;
+			maxAmount = 0;
+			while (index < Object.keys(table.upgrade_cost).length - 1 && cost + table.upgrade_cost[index + 1] < curGold) {
+				index += 1;
+				maxAmount += 1;
+				cost += table.upgrade_cost[index + 1];
+			}
+		}
+		money += cost;
+		actionCost = cost;
+	} else if (costType == "Recycle") {
+		money += "+" + table.worth;
+		actionCost = -table.worth;
+	} else if (costType == "Combine") {
+		
+	}
+
+	if(money !== "") {
+		let anvilImage = limiterContainer.FindChildTraverse("AnvilImage")!;
+		let anvilCost = anvilImage.FindChildTraverse("AnvilCost")!;
+		anvilCost.AddClass("Shown");
+		let anvilCostLabel = anvilCost.FindChild("AnvilCostLabel")! as LabelPanel;
+		anvilCostLabel.text = money;
+	}
+}
+
+function AnvilWeaponRemove(oldPanel: Panel) {
+	if (["AnvilUpgradeSelect", "AnvilRecycleSelect", "AnvilCombineSelect"].indexOf(oldPanel.id) < 0) {
+		return;
+	}
+	let anvilImage = limiterContainer.FindChildTraverse("AnvilImage")!;
+	let anvilCost = anvilImage.FindChildTraverse("AnvilCost")! as LabelPanel;
+	anvilCost.RemoveClass("Shown");
+}
+
 function StartProgress() {
 	let anvilTop = limiterContainer.FindChildTraverse("AnvilTop")!;
 	let bottomPanel = anvilTop.FindChildrenWithClassTraverse("AnvilSelectBottom")[0];
 	let otherPanel = anvilTop.FindChild("AnvilCombineSelect2")!;
+
+	let startType = "Combine";
+	if (bottomPanel.id == "AnvilUpgradeSelect") {
+		startType = "Upgrade";
+	} else if (bottomPanel.id == "AnvilRecycleSelect") {
+		startType = "Recycle";
+	}
+
+	let curGold = Players.GetGold(Players.GetLocalPlayer());
+	if (startType !== "Upgrade") {
+		return;
+	} else {
+		if ((actionCost == 0 && maxAmount == 0) || actionCost > curGold) {
+			let anvilImage = limiterContainer.FindChildTraverse("AnvilImage")!;
+			let anvilCost = anvilImage.FindChildTraverse("AnvilCost")!;
+			anvilCost.AddClass("Fail");
+			$.Schedule(0.1, () => {
+				anvilCost.RemoveClass("Fail");
+			});
+			UpdateAnvilCostPrepare();
+			return;
+		} else {
+			GameEvents.SendCustomGameEventToServer("spend_gold", {amount: actionCost});
+		}
+	}
 
 	let anvilOutput = limiterContainer.FindChildTraverse("AnvilOutput")!;
 	let outputFrame = anvilOutput.Children()[0];
@@ -299,10 +468,18 @@ function EndProgress(newPanel: Panel) {
 	let anvilOutput = limiterContainer.FindChildTraverse("AnvilOutput")!;
 	let outputFrame = anvilOutput.Children()[0];
 
-	newPanel.SetParent(outputFrame);
-	outputFrame.RemoveClass("Locked");
+	let id = newPanel.GetAttributeInt("weaponID", -1);
+	// newPanel.SetParent(outputFrame);
+	if (newPanel.weaponRef && outputFrame.weaponBaseRef) {
+		outputFrame.weaponBaseRef.simulateDrop(newPanel.weaponRef);
+	}
 
+	outputFrame.RemoveClass("Locked");
 	bottomPanel.RemoveClass("Locked");
+
+	// let anvilImage = limiterContainer.FindChildTraverse("AnvilImage")!;
+	// let anvilCost = anvilImage.FindChildTraverse("AnvilCost")! as LabelPanel;
+	// anvilCost.RemoveClass("Shown");
 
 	let anvilParticles = limiterContainer.FindChildTraverse("ShopAnvilParticles")!;
 	let anvilFinish = anvilParticles.FindChild("AnvilFinish")!;
@@ -312,6 +489,12 @@ function EndProgress(newPanel: Panel) {
 	newScene.SetParent(anvilFinish);
 	newScene.DeleteAsync(1);
 
+	let amount = upgradeAmount[upgradeAmountIndex];
+	if (upgradeAmountIndex == 4) {
+		amount = maxAmount;
+	}
+	GameEvents.SendCustomGameEventToServer("weapon_upgrade", {id: id, amount: amount});
+
 	$.Schedule(0.5, () => {
 		let anvilImage = limiterContainer.FindChildTraverse("AnvilImage")!;
 		let anvilProgress = anvilImage.FindChild("AnvilProgress")!;
@@ -320,19 +503,42 @@ function EndProgress(newPanel: Panel) {
 	});
 }
 
+function GetOpenShopTab():"Market" | "Anvil" | "Altar" {
+	return curOpenTab;
+}
+
+function ShopQuickMove(curPanel: Panel, parentPanel: Panel) {
+	if (GetOpenShopTab() == "Anvil") {
+		let parentID = parentPanel.id;
+		let anvilTop = limiterContainer.FindChildTraverse("AnvilTop")!;
+		let bottomPanel = anvilTop.FindChildrenWithClassTraverse("AnvilSelectBottom")[0];
+		let targetPanel = bottomPanel;
+		if (["AnvilUpgradeSelect", "AnvilRecycleSelect", "AnvilCombineSelect", "AnvilCombineSelect2"].indexOf(parentID) >= 0) {
+			let botShop = limiterContainer.FindChildTraverse("BotShop")!;
+			let weaponList = botShop.FindChild("ShopSelectList")!;
+			targetPanel = weaponList;
+		}
+		if(curPanel.weaponRef && targetPanel.weaponBaseRef) {
+			targetPanel.weaponBaseRef.simulateDrop(curPanel.weaponRef);
+		}
+	}
+}
+
 InitShop();
 $.RegisterForUnhandledEvent("StyleClassesChanged", CheckShopChange)
 
 function AddShopWeapon(weapon: PanoramaWeapon) {
-	let botShop = limiterContainer.FindChildTraverse("BotShop")!;
+	let botShop = limiterContainer.FindChildTraverse("BotShop");
+	if (botShop == null) {return;}
     let weaponList = botShop.FindChild("ShopSelectList")!;
-	// weaponList.RemoveAndDeleteChildren();
     let weaponPanel = weapon.exportPanel(PanoramaWeaponPanelType.CENTER);
-    weaponPanel.SetParent(weaponList);
+	weaponPanel.SetParent(weaponList);
+	weapon.registerQuickMoveCallback(ShopQuickMove);
 }
 
 function RemoveShopWeapon(id: number) {
 	let botShop = limiterContainer.FindChildTraverse("BotShop")!;
+	if (botShop == null) {return;}
 	let weaponList = botShop.FindChild("ShopSelectList")!;
 	let children = weaponList.Children()
 	children.forEach(element => {
@@ -352,4 +558,11 @@ GameEvents.Subscribe("add_weapon", event => {
 });
 GameEvents.Subscribe("remove_weapon", event => {
 	RemoveShopWeapon(event.id);
+});
+GameEvents.Subscribe("weapon_upgrade", event => {
+	RemoveShopWeapon(event.id);
+});
+GameEvents.Subscribe("add_weapon_shop_only", event => {
+	let newWeapon = new PanoramaWeapon(event.name, 0, event.icon, event.color, event.id);
+    AddShopWeapon(newWeapon);
 });

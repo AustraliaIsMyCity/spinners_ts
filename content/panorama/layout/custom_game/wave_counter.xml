@@ -1,0 +1,44 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/wave_counter.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.css" />
+        <include src="file://{resources}/styles/custom_game/wave_counter.css" />
+    </styles>
+
+    <snippets>
+
+    </snippets>
+
+    <Panel hittest="false" class="WaveCounter">
+		<Panel id="WaveCounterMain">
+            <Panel id="WaveCounterBackground" />
+            <Panel id="WaveCounterProgress" >
+                <Panel id="WaveCounterProgressBossMarker" />
+                <Panel id="WaveCounterProgressBossSkull" >
+                    <Panel class="BossSkullImage" />
+                </Panel>
+                <Panel id="WaveCounterProgressBar" />
+            </Panel>
+            <Label id="WaveCounterLabel" text="Wave 0" hittest="false" />
+            <Panel id="TopBorderFrame" hittest="false">
+                <Panel id="TopBorderFrameLeftEdge" hittest="false" />
+                <Panel id="TopBorderFrameRightEdge" hittest="false" />
+                <Panel id="TopBorderFrameBotEdge" hittest="false" />
+                <Panel id="TopBorderFrameBotLeftCorner" hittest="false" />
+                <Panel id="TopBorderFrameBotRightCorner" hittest="false" />
+            </Panel>
+        </Panel>
+        <Panel id="WaveCounterLabelAnim" hittest="true" >
+            <Panel class="LabelAnim">
+                <Label id="WaveCounterAnimLabel" text="1" hittest="false" />
+            </Panel>
+        </Panel>
+        <Panel id="NextWave">
+            <Button id="NextWaveButton" onactivate="NextWave();">
+                <Label id="NextWaveLabel" text="Start" />
+            </Button>
+        </Panel>
+    </Panel>
+</root>

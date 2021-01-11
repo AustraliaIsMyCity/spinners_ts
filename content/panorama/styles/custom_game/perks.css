@@ -1,0 +1,26 @@
+
+.Perks {
+	width: 50%;
+	height: 100%;
+}
+
+#PerkScreen {
+	height: 100px;
+	width: 100%;
+	margin-right: 200px;
+	align: left top;
+	flow-children: left;
+	padding: 15px;
+	padding-right: 30px;
+}
+
+.Perk {
+	height: 50px;
+	width: 50px;
+	margin-left: 20px;
+	border-radius: 5px;
+	border: 3px solid rgb(106, 15, 209);
+	background-image: url("file://{images}/custom_game/perk_shadow.png");
+	background-size: 100% 100%;
+	box-shadow: rgb(106, 15, 209) 0px 0px 12px 0px;
+}

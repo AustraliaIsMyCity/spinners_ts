@@ -1,0 +1,59 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/welcome.js" />
+		<include src="file://{resources}/scripts/custom_game/weapon_base.js" />
+    </scripts>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.css" />
+        <include src="file://{resources}/styles/custom_game/welcome.css" />
+		<include src="file://{resources}/styles/custom_game/weapon_base.css" />
+    </styles>
+
+    <snippets>
+		<snippet name="WeaponPanel">
+			<Panel class="WeaponPanel" draggable="true">
+				<Image class="WeaponImage" />
+			</Panel>
+		</snippet>
+    </snippets>
+
+    <Panel hittest="false" class="Welcome WelcomeHidden">
+		<Panel id="WelcomeHudBackground" />
+		<Panel id="WelcomeMain" hittest="false">
+			<Label id="WelcomeHeader" text="Welcome!"/>
+			<Label id="WelcomeIntroduction" text="As a welcome gift, please accept one of these gifts.\n They will surely be of use to you!" />
+			<Panel id="WelcomeBody">
+				<Button id="WelcomePreset1" class="WelcomePreset" onactivate="SelectPreset(1)">
+					<Label class="WelcomePresetTitle" text="Preset 1" hittest="false" />
+					<Panel class="WelcomePresetContainer" hittest="false" />
+				</Button>
+				<Button id="WelcomePreset2" class="WelcomePreset" onactivate="SelectPreset(2)">
+					<Label class="WelcomePresetTitle" text="Preset 2" hittest="false" />
+					<Panel class="WelcomePresetContainer" hittest="false" />
+				</Button>
+				<Button id="WelcomePreset3" class="WelcomePreset" onactivate="SelectPreset(3)">
+					<Label class="WelcomePresetTitle" text="Preset 3" hittest="false" />
+					<Panel class="WelcomePresetContainer" hittest="false" />
+				</Button>
+				<Button id="WelcomePreset4" class="WelcomePreset" onactivate="SelectPreset(4)">
+					<Label class="WelcomePresetTitle" text="Preset 4" hittest="false" />
+					<Panel class="WelcomePresetContainer" hittest="false" />
+				</Button>
+			</Panel>
+			<Button id="WelcomeConfirm" class="Inactive" onactivate="ConfirmPreset()" hittest="true">
+				<Panel class="WelcomeConfirmBackground" hittest="false" />
+				<Label class="WelcomeConfirmText" text="Confirm" hittest="false" />
+			</Button>
+		</Panel>
+		<Panel id="WelcomeBorderFrame" hittest="false">
+			<Panel id="WelcomeBorderFrameLeftEdge" hittest="false" />
+			<Panel id="WelcomeBorderFrameRightEdge" hittest="false" />
+			<Panel id="WelcomeBorderFrameBotEdge" hittest="false" />
+			<Panel id="WelcomeBorderFrameTopEdge" hittest="false" />
+			<Panel id="WelcomeBorderFrameTopLeftCorner" hittest="false" />
+			<Panel id="WelcomeBorderFrameTopRightCorner" hittest="false" />
+			<Panel id="WelcomeBorderFrameBotLeftCorner" hittest="false" />
+			<Panel id="WelcomeBorderFrameBotRightCorner" hittest="false" />
+		</Panel>
+    </Panel>
+</root>

@@ -75,7 +75,8 @@ export class spin_passive extends SpinModifier {
 				let sync = false;
 				if (syncInterval > 0) {
 					let syncVal = Math.round((this.count - i - 1) * ((1/this.interval) / this.count)) * syncInterval;
-					sync = (this.tick % ((1/this.interval) * syncInterval)) == syncVal;
+					let finalSync = syncVal - (this.tick % ((1/this.interval) * syncInterval))
+					sync = finalSync <= 0 || finalSync > -1;
 				}
 				this.slots[i].tick(newLoc, sync);
 			}

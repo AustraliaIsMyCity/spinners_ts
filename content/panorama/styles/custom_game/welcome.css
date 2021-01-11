@@ -1,0 +1,256 @@
+
+.Welcome {
+	align: middle middle;
+	width: 750px;
+	height: 550px;
+	margin-bottom: 50px;
+	/* visibility: collapse; */
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.4s;
+	transition-timing-function: ease-in-out;
+}
+
+.WelcomeHidden {
+	visibility: collapse;
+}
+
+.WelcomeVisible {
+	visibility: visible;
+	opacity: 1;
+}
+
+#WelcomeHudBackground {
+    width: 100%;
+    height: 100%;
+	opacity: 0.95;
+	background-size: 150% 300%;
+    background-image: url("file://{images}/custom_game/hud_bg_white.jpg");
+	wash-color: #464e51;
+}
+
+#WelcomeBorderFrame {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+#WelcomeBorderFrameLeftEdge {
+    background-image: url("file://{images}/custom_game/hud_border_03.png");
+    background-size: 100% 100%;
+    height: 100%;
+    width: 50px;
+}
+
+#WelcomeBorderFrameRightEdge {
+    background-image: url("file://{images}/custom_game/hud_border_02.png");
+    background-size: 100% 100%;
+    horizontal-align: right;
+    height: 100%;
+    width: 50px;
+}
+
+#WelcomeBorderFrameBotEdge {
+    background-image: url("file://{images}/custom_game/hud_border_05.png");
+    background-size: 100% 100%;
+    vertical-align: bottom;
+    height: 50px;
+    width: 100%;
+}
+
+#WelcomeBorderFrameTopEdge {
+    background-image: url("file://{images}/custom_game/hud_border_04.png");
+    background-size: 100% 100%;
+    vertical-align: top;
+    height: 50px;
+    width: 100%;
+}
+
+#WelcomeBorderFrameTopLeftCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_01.png");
+    background-size: 100% 100%;
+    align: left top;
+    width: 40px;
+    height: 40px;
+}
+
+#WelcomeBorderFrameTopRightCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_02.png");
+    background-size: 100% 100%;
+    align: right top;
+    width: 40px;
+    height: 40px;
+}
+
+#WelcomeBorderFrameBotLeftCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_03.png");
+    background-size: 100% 100%;
+    align: left bottom;
+    width: 40px;
+    height: 40px;
+}
+
+#WelcomeBorderFrameBotRightCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_04.png");
+    background-size: 100% 100%;
+    align: right bottom;
+    width: 40px;
+    height: 40px;
+}
+
+#WelcomeMain {
+	height: 100%;
+	width: 100%;
+	margin: 20px;
+	flow-children: down;
+}
+
+#WelcomeHeader {
+	width: 100%;
+	height: 50px;
+	align: middle top;
+	font-size: 40px;
+	font-family: Reaver SemiBold;
+	/* color: rgb(177, 35, 35); */
+	text-align: center;
+	color: rgb(250, 249, 237);
+}
+
+#WelcomeIntroduction {
+	width: 100%;
+	height: 60px;
+	align: middle top;
+	font-size: 20px;
+	font-family: Reaver SemiBold;
+	/* color: rgb(177, 35, 35); */
+	text-align: center;
+	color: rgb(250, 249, 237);
+}
+
+#WelcomeBody {
+	width: 100%;
+	height: 340px;
+	flow-children: right-wrap;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 15px;
+}
+
+.WelcomePreset {
+	height: 140px;
+	width: 185px;
+	background-color: rgba(0, 0, 0, 0.4);
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	horizontal-align: center;
+	border: 3px solid darkgray;
+	border-radius: 10px;
+	flow-children: down;
+	transition-property: border, background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.WelcomePreset:hover {
+	background-color: rgba(0, 0, 0, 0.6);
+	border: 3px solid rgb(209, 209, 209);
+}
+
+.WelcomePreset:hover .WelcomePresetTitle {
+	color: white;
+}
+
+.WelcomePreset.Selected {
+	background-color: rgba(0, 0, 0, 0.6);
+	border: 3px solid rgb(209, 209, 209);
+}
+
+.WelcomePreset.Selected .WelcomePresetTitle {
+	color: white;
+}
+
+#WelcomePreset1 {
+	margin-top: 75px;
+}
+
+#WelcomePreset3 {
+	margin-top: 75px;
+}
+
+#WelcomePreset4 {
+	margin-top: -60px;
+}
+
+.WelcomePresetTitle {
+	width: 100%;
+	height: 30px;
+	align: middle top;
+	font-size: 20px;
+	font-family: Reaver SemiBold;
+	text-align: center;
+	margin-top: 4px;
+	transition-property: color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.WelcomePresetContainer {
+	width: 100%;
+	height: 100%;
+	padding-right: 10px;
+	padding-left: 10px;
+	flow-children: right-wrap;
+}
+
+.WelcomePresetContainer .WeaponPanel {
+    margin-left: 25px;
+    margin-right: 0px;
+	margin-bottom: 8px;
+	/* horizontal-align: center; */
+}
+
+#WelcomeConfirm {
+	width: 200px;
+	height: 40px;
+	align: middle middle;
+	transition-property: wash-color, opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	opacity: 1;
+}
+
+#WelcomeConfirm.Inactive {
+	wash-color: lightgray;
+	opacity: 0.5;
+}
+
+#WelcomeConfirm .WelcomeConfirmBackground {
+	width: 100%;
+	height: 100%;
+	background-image: url("file://{images}/custom_game/button.png");
+	background-size: 100% 100%;
+	transition-property: wash-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	wash-color: rgba(0, 0, 0, 0);
+}
+
+#WelcomeConfirm .WelcomeConfirmText {
+	align: middle middle;
+	font-size: 25px;
+	font-family: Reaver SemiBold;
+	text-align: center;
+	color: rgb(48, 48, 48);
+	transition-property: color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+}
+
+#WelcomeConfirm:not(.Inactive):hover .WelcomeConfirmBackground{
+	wash-color: rgba(0, 0, 0, 0.4);
+}
+
+#WelcomeConfirm:not(.Inactive):hover .WelcomeConfirmText{
+	color: rgb(0, 0, 0);
+}

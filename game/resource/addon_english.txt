@@ -1,0 +1,13 @@
+"lang"
+{
+	"Language" "english"
+	"Tokens"
+	{
+		"addon_game_name" "Spinners"
+		"npc_dota_hero_spinner" "Spinner"
+		"basic_fire_name" "Fireball"
+		"basic_fire_description" "A powerful fireball projectile that deals splash damage in an area."
+		"basic_ice_name" "Ice Shards"
+		"basic_ice_description" "Fast icy projectile that slows enemies hit."
+	}
+}

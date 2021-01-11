@@ -48,3 +48,50 @@
 .PotentialDropTarget {
     background-color: gradient( radial, 50% -20%, 0% 0%, 80% 80%, from( #ffffff30 ), to( #FFFFFF00 ) );
 }
+
+.TooltipWeaponContent {
+    height: fit-children;
+    width: 100%;
+    margin-top: 7px;
+}
+
+.TooltipWeaponValues {
+    width: 100%;
+    font-family: defaultFont;
+    font-size: 16px;
+    color: #596e89;
+}
+
+.TooltipWeaponInfo {
+    height: fit-children;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.TooltipWeaponInfoElement {
+    horizontal-align: left;
+    font-size: 16px;
+    color: #596e89;
+}
+
+.TooltipWeaponTitle {
+    height: fit-children;
+    width: 100%;
+}
+
+.TooltipWeaponTitleText {
+    horizontal-align: left;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.TooltipWeaponTitleLevel {
+    horizontal-align: right;
+    font-size: 16px;
+    color: #4b535e;
+}
+
+:focus {
+    border: 3px solid red;
+}

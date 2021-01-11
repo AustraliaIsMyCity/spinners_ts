@@ -1,0 +1,226 @@
+
+.WaveCounter {
+	align: middle top;
+	height: 200px;
+	width: 500px;
+	/* background-color: rgba(0, 0, 0, 0.219); */
+}
+
+#WaveCounterMain {
+	align: middle top;
+	height: 75px;
+	width: 400px;
+	/* background-color: rgba(0, 0, 0, 0.8); */
+}
+
+#WaveCounterBackground {
+	width: 100%;
+	height: 100%;
+	background-image: url("file://{images}/custom_game/hud_bg_white.jpg");
+    wash-color: #2e3233;
+}
+
+#WaveCounterLabel {
+	align: middle middle;
+	text-align: center;
+	margin-top: 5px;
+	height: 100%;
+	width: 100%;
+	font-size: 30px;
+	font-family: Reaver SemiBold;
+	color: rgb(196, 196, 196);
+}
+
+#WaveCounterProgress {
+	height: 100%;
+	width: 100%;
+}
+
+#WaveCounterProgressBossMarker {
+	height: 100%;
+	width: 4px;
+	margin-left: 80%;
+	background-color: rgba(255, 0, 0, 0.1);
+}
+
+#WaveCounterProgressBossSkull {
+	height: 60px;
+	width: 60px;
+	align: right middle;
+	margin-bottom: 6px;
+	margin-right: 48px;
+}
+
+#WaveCounterProgressBossSkull .BossSkullImage {
+	height: 40px;
+	width: 40px;
+	align: middle middle;
+	background-image: url("file://{images}/custom_game/skull.png");
+	background-size: 100% 100%;
+	opacity: 0.1;
+	transition-property: opacity, height, width, margin-left;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+
+#WaveCounterProgressBossSkull.BossAlive .BossSkullImage{
+	opacity: 0.6;
+	height: 45px;
+	width: 45px;
+}
+
+#WaveCounterProgressBar {
+	height: 100%;
+	width: 0%;
+	background-color: rgba(14, 187, 14, 0.03);
+	transition-property: width;
+	transition-duration: 1s;
+	transition-timing-function: ease-out;
+}
+
+#WaveCounterProgressBar:hover {
+	width: 100%;
+}
+
+#TopBorderFrame {
+    width: 100%;
+    height: 100%;
+	/* background-color: rgba(255, 0, 0, 0.267); */
+}
+
+#TopBorderFrameLeftEdge {
+    background-image: url("file://{images}/custom_game/hud_border_03.png");
+    background-size: 100% 100%;
+    height: 100%;
+    width: 50px;
+}
+
+#TopBorderFrameRightEdge {
+    background-image: url("file://{images}/custom_game/hud_border_02.png");
+    background-size: 100% 100%;
+    horizontal-align: right;
+    height: 100%;
+    width: 50px;
+}
+
+#TopBorderFrameBotEdge {
+    background-image: url("file://{images}/custom_game/hud_border_05.png");
+    background-size: 100% 100%;
+    vertical-align: bottom;
+    height: 50px;
+    width: 100%;
+}
+
+#TopBorderFrameBotLeftCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_03.png");
+    background-size: 100% 100%;
+    align: left bottom;
+    width: 30px;
+    height: 30px;
+}
+
+#TopBorderFrameBotRightCorner {
+    background-image: url("file://{images}/custom_game/hud_corner_04.png");
+    background-size: 100% 100%;
+    align: right bottom;
+    width: 30px;
+    height: 30px;
+}
+
+#NextWave {
+	align: middle bottom;
+	height: 100px;
+	width: 300px;
+	margin-bottom: 30px;
+	background-image: url("file://{images}/custom_game/banner.png");
+	background-size: 100% 100%;
+	transition-property: opacity;
+	transition-duration: 0.6s;
+	transition-timing-function: ease-in-out;
+}
+
+#NextWaveButton {
+	align: middle middle;
+	height: 40px;
+	width: 250px;
+	margin-bottom: 4px;
+	opacity: 1;
+}
+
+#NextWaveLabel {
+	align: middle middle;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	font-size: 30px;
+	font-family: Reaver SemiBold;
+	color: rgb(177, 35, 35);
+}
+
+#NextWaveButton:hover {
+	margin-bottom: 5px;
+}
+
+#NextWaveButton:hover #NextWaveLabel {
+	font-size: 32px;
+	color: rgb(204, 37, 37);
+}
+
+.NextButtonHidden {
+	opacity: 0;
+}
+
+#WaveCounterLabelAnim {
+	width: 150px;
+	height: 150px;
+	/* background-color: rgba(9, 98, 199, 0.1); */
+	align: middle top;
+	margin-left: 82px;
+	margin-bottom: 20px;
+}
+
+.LabelAnim {
+	align: middle top;
+	width: 50px;
+	height: 50px;
+	transition-property: ui-scale;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-out;
+	opacity: 0;
+	ui-scale: 250%;
+}
+
+#WaveCounterLabelAnim Label {
+	align: middle middle;
+	font-size: 30px;
+	font-family: Reaver SemiBold;
+	font-weight: bold;
+	transition-property: color;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-out;
+	color: rgb(196, 196, 196);
+}
+
+#WaveCounterLabelAnim.Activated .LabelAnim {
+	animation-name: new_number;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	opacity: 1;
+	ui-scale: 100%;
+}
+
+#WaveCounterLabelAnim.Activated .LabelAnim Label {
+	color: rgb(204, 37, 37);
+}
+
+@keyframes 'new_number' {
+	from
+	{
+		opacity: 1;
+	}
+	to
+	{
+		opacity: 0;
+	}
+}

@@ -1,4 +1,4 @@
-import { RotateVector2D } from "../lib/util";
+import { AngleCalculation, AngleCalculationWithSide, GetVectorSide, RotateVector2D } from "../lib/util";
 import { PathModifierData, PathModifierOptions, PathModifierResult, ProjectileData, ProjectileState } from "./custom_projectile_enums";
 
 // Templates usable:
@@ -65,6 +65,7 @@ class PathModifierTemplates {
 		"sinus_slow",
 		"state_change_after_delay",
 		"aim_at_target",
+		"homing",
 	]
 
 	static getMovement(template: string):((data: ProjectileData, optVals: PathModifierData) => PathModifierResult) | undefined {
@@ -84,6 +85,9 @@ class PathModifierTemplates {
 		}
 		if (template == "aim_at_target") {
 			return this.aimAtTarget;
+		}
+		if (template == "homing") {
+			return this.homingMovement;
 		}
 	}
 
@@ -137,6 +141,59 @@ class PathModifierTemplates {
 			let targetLoc: Vector = target.GetAbsOrigin();
 			result.newDirection = ((targetLoc - data.curLoc) as Vector).Normalized();
 		}
+
+		return result;
+	}
+
+	static homingMovement(data: ProjectileData, optVals: PathModifierData):PathModifierResult {
+		let result: PathModifierResult = {
+			newDirection: data.curDirection,
+			newSpeed: data.curSpeed,
+		}
+		let target: CDOTA_BaseNPC | undefined = optVals.getVal<CDOTA_BaseNPC>("target");
+		if (target && !target.IsAlive()) {
+			target = undefined;
+		}
+		if (!target) {
+			let searchRadius: number = optVals.getVal<number>("searchRadius") || 200;
+			let caster: CDOTA_BaseNPC = data.caster;
+			let results: CDOTA_BaseNPC[] = FindUnitsInRadius(
+				caster.GetTeamNumber(),
+				data.curLoc,
+				caster,
+				searchRadius,
+				data.iUnitTargetTeam,
+				data.iUnitTargetType,
+				data.iUnitTargetFlags,
+				FindOrder.CLOSEST,
+				true,
+			)
+			let casterLoc = caster.GetAbsOrigin();
+			let maxDistance = -1;
+			for (const element of results) {
+				let distance = (element.GetAbsOrigin() - casterLoc as Vector).Length2D();
+				if (distance > maxDistance) {
+					target = element;
+					maxDistance = distance;
+				}
+			}
+			if (target) {
+				optVals.setVal("target", target);
+			}
+		}
+		if (!target) return result;
+		let targetLoc = target.GetAbsOrigin();
+		let direction = (data.curLoc - targetLoc as Vector).Normalized();
+		let angle = AngleCalculationWithSide(direction as Vector, data.curDirection);
+		let maxAngle: number = optVals.getVal<number>("maxAngle") || 2;
+		if (angle < 0) {
+			maxAngle = (180 + angle) < maxAngle? -(180 + angle) : -maxAngle;
+		} else {
+			maxAngle = (180 - angle) < maxAngle? 180 - angle : maxAngle;
+		}
+		if (math.abs(maxAngle) < 1) return result;
+		let newDirection = RotateVector2D(data.curDirection as Vector, maxAngle);
+		result.newDirection = newDirection;
 
 		return result;
 	}

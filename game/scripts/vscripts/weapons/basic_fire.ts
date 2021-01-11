@@ -25,8 +25,8 @@ export class basic_fire extends BaseWeapon {
 
 	wOnAttack(loc: Vector, direction: Vector) {
 		let radius = this.wGetSpecialValueFor("radius");
-		let speed = this.wGetSpecialValueFor("speed") * 2;
-		let distance = this.wGetSpecialValueFor("distance") * 2;
+		let speed = this.wGetSpecialValueFor("speed");
+		let distance = this.wGetSpecialValueFor("distance");
 
 		let snakeModifier = ProjectilePathModifier.fromTemplate("snake");
 		snakeModifier.setActiveState(ProjectileState.ACTIVE);
@@ -42,7 +42,6 @@ export class basic_fire extends BaseWeapon {
 		let aimModifier = ProjectilePathModifier.fromTemplate("aim_at_target");
 		aimModifier.setActiveState(ProjectileState.CUSTOM_1);
 		aimModifier.setVal("target", this.caster);
-
 
 		let projectileTable:ProjectileOptions = {
 			caster:  this.caster,
