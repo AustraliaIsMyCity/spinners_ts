@@ -2,7 +2,6 @@
 exports.__esModule = true;
 var fs = require("fs");
 var path = require('path');
-// import watch from 'node-watch';
 var watch = require("node-watch");
 var completeData = {};
 var watcher = watch(["./game/resource/localization", "./game/resource/localizationCompiler.js"], { recursive: true });
@@ -50,37 +49,7 @@ function getDataFromFile(filePath) {
     return;
 }
 function combineData() {
-    var Abilities = new Array();
-    var Modifiers = new Array();
-    var StandardTooltips = new Array();
-    var Talents = new Array();
-    var Weapons = new Array();
-    var localization_info = {
-        AbilityArray: Abilities,
-        ModifierArray: Modifiers,
-        StandardArray: StandardTooltips,
-        TalentArray: Talents,
-        WeaponsArray: Weapons
-    };
-    for (var _i = 0, _a = Object.entries(completeData); _i < _a.length; _i++) {
-        var _b = _a[_i], key = _b[0], data = _b[1];
-        if (data.AbilityArray) {
-            Array.prototype.push.apply(Abilities, data.AbilityArray);
-        }
-        if (data.ModifierArray) {
-            Array.prototype.push.apply(Modifiers, data.ModifierArray);
-        }
-        if (data.StandardArray) {
-            Array.prototype.push.apply(StandardTooltips, data.StandardArray);
-        }
-        if (data.TalentArray) {
-            Array.prototype.push.apply(Talents, data.TalentArray);
-        }
-        if (data.WeaponsArray) {
-            Array.prototype.push.apply(Weapons, data.WeaponsArray);
-        }
-    }
-    compiler.OnLocalizationDataChanged(localization_info);
+    compiler.OnLocalizationDataChanged(completeData);
 }
 function loadCompiler() {
     // Clear require cache

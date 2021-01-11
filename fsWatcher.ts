@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 const path = require('path');
 import { LocalizationCompiler } from './game/resource/localizationCompiler';
-import { AbilityLocalization, HeroTalents, LocalizationData, ModifierLocalization, StandardLocalization, Weapons } from './game/resource/localizationInterfaces';
-// import watch from 'node-watch';
+import { LocalizationData} from './game/resource/localizationInterfaces';
 const watch = require("node-watch");
 
 let completeData: {[path: string]: LocalizationData} = {};
@@ -55,40 +54,7 @@ function getDataFromFile(filePath: string): LocalizationData | undefined {
 }
 
 function combineData() {
-	let Abilities: Array<AbilityLocalization> = new Array<AbilityLocalization>();
-    let Modifiers: Array<ModifierLocalization> = new Array<ModifierLocalization>();
-    let StandardTooltips: Array<StandardLocalization> = new Array<StandardLocalization>();
-    let Talents: Array<HeroTalents> = new Array<HeroTalents>();
-	let Weapons: Array<Weapons> = new Array<Weapons>();
-
-	const localization_info: LocalizationData =
-    {
-        AbilityArray: Abilities,
-        ModifierArray: Modifiers,
-        StandardArray: StandardTooltips,
-        TalentArray: Talents,
-        WeaponsArray: Weapons,
-    };
-
-	for (const [key, data] of Object.entries(completeData)) {
-		if (data.AbilityArray) {
-			Array.prototype.push.apply(Abilities, data.AbilityArray); 
-		}
-		if (data.ModifierArray) {
-			Array.prototype.push.apply(Modifiers, data.ModifierArray); 
-		}
-		if (data.StandardArray) {
-			Array.prototype.push.apply(StandardTooltips, data.StandardArray); 
-		}
-		if (data.TalentArray) {
-			Array.prototype.push.apply(Talents, data.TalentArray); 
-		}
-		if (data.WeaponsArray) {
-			Array.prototype.push.apply(Weapons, data.WeaponsArray); 
-		}
-	}
-
-	compiler.OnLocalizationDataChanged(localization_info);
+	compiler.OnLocalizationDataChanged(completeData);
 }
 
 function loadCompiler(): LocalizationCompiler

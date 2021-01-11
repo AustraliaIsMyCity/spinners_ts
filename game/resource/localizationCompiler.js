@@ -37,15 +37,44 @@ var LocalizationCompiler = /** @class */ (function () {
             return text.replace(/\${(\w*)}([^%])/g, "%$1%$2").replace(/\${(\w*)}%/g, "%$1%%%");
         }
     };
-    LocalizationCompiler.prototype.OnLocalizationDataChanged = function (localized_data) {
+    LocalizationCompiler.prototype.OnLocalizationDataChanged = function (allData) {
         console.log("Localization event fired");
-        // const localized_data = GenerateLocalizationData();
+        var Abilities = new Array();
+        var Modifiers = new Array();
+        var StandardTooltips = new Array();
+        var Talents = new Array();
+        var Weapons = new Array();
+        var localization_info = {
+            AbilityArray: Abilities,
+            ModifierArray: Modifiers,
+            StandardArray: StandardTooltips,
+            TalentArray: Talents,
+            WeaponsArray: Weapons,
+        };
+        for (var _i = 0, _a = Object.entries(allData); _i < _a.length; _i++) {
+            var _b = _a[_i], key = _b[0], data = _b[1];
+            if (data.AbilityArray) {
+                Array.prototype.push.apply(Abilities, data.AbilityArray);
+            }
+            if (data.ModifierArray) {
+                Array.prototype.push.apply(Modifiers, data.ModifierArray);
+            }
+            if (data.StandardArray) {
+                Array.prototype.push.apply(StandardTooltips, data.StandardArray);
+            }
+            if (data.TalentArray) {
+                Array.prototype.push.apply(Talents, data.TalentArray);
+            }
+            if (data.WeaponsArray) {
+                Array.prototype.push.apply(Weapons, data.WeaponsArray);
+            }
+        }
         console.log("Localization data generated");
         // Generate information for every language
         var languages = Object.values(localizationInterfaces_1.Language).filter(function (v) { return typeof v !== "number"; });
-        for (var _i = 0, languages_1 = languages; _i < languages_1.length; _i++) {
-            var language = languages_1[_i];
-            var localization_content = this.GenerateContentStringForLanguage(language, localized_data);
+        for (var _c = 0, languages_1 = languages; _c < languages_1.length; _c++) {
+            var language = languages_1[_c];
+            var localization_content = this.GenerateContentStringForLanguage(language, localization_info);
             this.WriteContentToAddonFile(language, localization_content);
         }
     };

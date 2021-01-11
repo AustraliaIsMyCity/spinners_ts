@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 // import { GenerateLocalizationData } from "./localizationData";
-import { LocalizationData, Language } from "./localizationInterfaces";
+import { LocalizationData, Language, AbilityLocalization, ModifierLocalization, StandardLocalization, HeroTalents, Weapons } from "./localizationInterfaces";
 
 export class LocalizationCompiler
 {
@@ -20,17 +20,49 @@ export class LocalizationCompiler
         }
     }
 
-    OnLocalizationDataChanged(localized_data: LocalizationData)
+    OnLocalizationDataChanged(allData: {[path: string]: LocalizationData})
     {
         console.log("Localization event fired");
-        // const localized_data = GenerateLocalizationData();
+        let Abilities: Array<AbilityLocalization> = new Array<AbilityLocalization>();
+        let Modifiers: Array<ModifierLocalization> = new Array<ModifierLocalization>();
+        let StandardTooltips: Array<StandardLocalization> = new Array<StandardLocalization>();
+        let Talents: Array<HeroTalents> = new Array<HeroTalents>();
+        let Weapons: Array<Weapons> = new Array<Weapons>();
+
+        const localization_info: LocalizationData =
+        {
+            AbilityArray: Abilities,
+            ModifierArray: Modifiers,
+            StandardArray: StandardTooltips,
+            TalentArray: Talents,
+            WeaponsArray: Weapons,
+        };
+
+        for (const [key, data] of Object.entries(allData)) {
+            if (data.AbilityArray) {
+                Array.prototype.push.apply(Abilities, data.AbilityArray); 
+            }
+            if (data.ModifierArray) {
+                Array.prototype.push.apply(Modifiers, data.ModifierArray); 
+            }
+            if (data.StandardArray) {
+                Array.prototype.push.apply(StandardTooltips, data.StandardArray); 
+            }
+            if (data.TalentArray) {
+                Array.prototype.push.apply(Talents, data.TalentArray); 
+            }
+            if (data.WeaponsArray) {
+                Array.prototype.push.apply(Weapons, data.WeaponsArray); 
+            }
+        }
+        
         console.log("Localization data generated");
 
         // Generate information for every language
         const languages = Object.values(Language).filter(v => typeof v !== "number");
         for (const language of languages)
         {
-            const localization_content: string = this.GenerateContentStringForLanguage(language, localized_data);
+            const localization_content: string = this.GenerateContentStringForLanguage(language, localization_info);
             this.WriteContentToAddonFile(language, localization_content);
         }
     }
