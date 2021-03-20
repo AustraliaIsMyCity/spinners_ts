@@ -105,7 +105,7 @@ Unlike the other modes, a game of versus will end, if only one player is remaini
 <strong>C42</strong><br>
 After the first player finsished a wave a timer starts. After it expired, all still remaining enemies get stronger every second passed.<br>
 <strong>C43</strong><br>
-If a player dies and has no lifes left in a coop game, he will be dropped out of the game or can continue as a spectator. All of his items and gold is lost.<br>
+If a player dies and has no lifes left in a versus game, he will be dropped out of the game or can continue as a spectator. All of his items and gold is lost.<br>
 <strong>C44</strong><br>
 After Y rounds all players will be teleported to the <strong>battle grounds</strong>. This is a bigger arena where different kind of enemies will spawn constantly. These enemies get quickly stronger over time. Also players can fight each other and all weapons can also affect the enemy players. This special wave ends, if there is only one player remaining.<br>
 <strong>C45</strong><br>
