@@ -38,7 +38,7 @@ Heroes also have abilities that have minor gameplay impact. but can be great too
 <p><strong>C10</strong><br>
 Weapons are the deciding factor of the game. A weapon is an item that the player can equip in one of his <strong>8</strong> weapon slots around the hero (in a special interface). Weapons are non-physical items and are stored in an infinite seperate inventory.<br>
 <strong>C11</strong><br>
-The slots around the hero are constantyl spinning with a constant speed in the same direction (if not influenced by abilities, etc) though the whole game. In each slot, only one weapon can be equipped. Weapons can be rearranged and unequipped at any time.<br>
+The slots around the hero are continously spinning with a constant speed in the same direction (if not influenced by abilities, etc) though the whole game. In each slot, only one weapon can be equipped. Weapons can be rearranged and unequipped at any time.<br>
 <strong>C12</strong><br>
 Each weapon has an internal cooldown, which defines the interval for its activation. While the activation effect may be very different from weapon to weapon, it will fire a projectile of some sort in the most cases. Weapons with the same interval get synchronized to be equally activated along the ring.<br>
 <strong>C13</strong><br>
