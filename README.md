@@ -31,9 +31,7 @@ The player takes damage if he gets in contact with enemy units. This will kill t
 <strong>C4</strong><br>
 If the player takes fatal damage, the wave ends instantly and the player is resurrected. This can happen up to X times (preferable <strong>3</strong>).  If this would happen once more, the player drops out of the game, can leave or continue as spectator. Once he failed to complete a wave and is resurrected, he can either repeat the same wave again or go directly to the next one (like everyone else).<br>
 <strong>C5</strong><br>
-The game progresses endlessly, so it will always finsish with the last player dying X times.<br>
-<strong>C6</strong><br>
-Heroes also have abilities that have minor gameplay impact. but can be great tool for various serious situations. E.g. a short range blink, temporary slot spin stop, etc…</p>
+The game progresses endlessly, so it will always finsish with the last player dying X times.</p>
 <h2 id="weapons">Weapons</h2>
 <p><strong>C10</strong><br>
 Weapons are the deciding factor of the game. A weapon is an item that the player can equip in one of his <strong>8</strong> weapon slots around the hero (in a special interface). Weapons are non-physical items and are stored in an infinite seperate inventory.<br>
