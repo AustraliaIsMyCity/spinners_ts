@@ -102,6 +102,8 @@ Single player tutorial, that is the same as single player coop mode, but with ti
 The versus gamemode is for 2-X players and focuses on a single player experience with competetive features.<br>
 <strong>C41</strong><br>
 Unlike the other modes, a game of versus will end, if only one player is remaining. This player is chosen as the winner. He may continue to play, like it was a single player game afterwards (no bosses, no battle gound).<br>
+<strong>C42</strong><br>
+After the first player finsished a wave a timer starts. After it expired, all still remaining enemies get stronger every second passed.<br>
 <strong>C43</strong><br>
 If a player dies and has no lifes left in a coop game, he will be dropped out of the game or can continue as a spectator. All of his items and gold is lost.<br>
 <strong>C44</strong><br>
