@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spinner_concept</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -17,11 +18,11 @@
 </ul>
 <h2 id="introduction">Introduction</h2>
 <p>This gamemode can be classified as an <strong>Arena Survival</strong> game mode, where your primary goal is to survive waves of enemies as long as possible.<br>
-Your tool for self-defense is spinning ring of weapon slots around your hero, that automatically fires projectiles, according to the equipped weapons. Even though the attacks are automatic, the player needs to activly dodge enemies and their attacks, while repositioning himself to get advantageous attack positions.</p>
+Your tool for self-defense is a spinning ring of weapon slots around your hero, that automatically fires projectiles, according to the equipped weapons. Even though the attacks are automatic, the player needs to activly dodge enemies and their attacks, while repositioning himself to get advantageous attack positions.</p>
 <h2 id="core-gemapley">Core Gemapley</h2>
 <p><strong>C1</strong><br>
 You start the game in your own arena, where you stay most of time though the game.<br>
-The arena is square and the player can move freely without, but can leave it on own will.<br>
+The arena is square and the player can move freely, but can’t leave it on own will.<br>
 Enemies will only be present during a wave. A wave is counted as complete, if all enemies are defeated. Waves get stronger as the game progresses.<br>
 <strong>C2</strong><br>
 There is time between waves, that the players can use for various actions. A new wave starts if the player confirms he is ready, or when a timer expired. Waves always start at the same time for all players. After defeating a wave, rewards may be given to the player.<br>
