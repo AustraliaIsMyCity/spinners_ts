@@ -21,17 +21,21 @@
 Your tool for self-defense is a spinning ring of weapon slots around your hero, that automatically fires projectiles, according to the equipped weapons. Even though the attacks are automatic, the player needs to activly dodge enemies and their attacks, while repositioning himself to get advantageous attack positions.</p>
 <h2 id="core-gemapley">Core Gemapley</h2>
 <p><strong>C1</strong><br>
-You start the game in your own arena, where you stay most of time though the game.<br>
-The arena is square and the player can move freely, but can’t leave it on own will.<br>
-Enemies will only be present during a wave. A wave is counted as complete, if all enemies are defeated. Waves get stronger as the game progresses.<br>
+You start the game in your own arena, where you stay most of time though the game. The arena is square and the player can move freely, but can’t leave it on own will.<br>
+<strong>C1.5</strong><br>
+Enemies will only be present during a wave and each wave consists of several of the same unit. Enemies spawn in an interval until all enemies are spawned (typically 50) or the arena maximum is reached. A wave is counted as complete, if all enemies are defeated. Waves get more health as the game progresses.<br>
 <strong>C2</strong><br>
-There is time between waves, that the players can use for various actions. A new wave starts if the player confirms he is ready, or when a timer expired. Waves always start at the same time for all players. After defeating a wave, rewards may be given to the player.<br>
+There is time between waves (approx. 20-40s), that the players can use for various actions, like upgrading and rearranging weapons (more later). A new wave starts if the player confirms he is ready, or when a timer expired. Waves always start at the same time for all players. After defeating a wave, rewards may be given to the player.<br>
 <strong>C3</strong><br>
-The player takes damage if he gets in contact with enemy units. This will kill the unit and deal damage to the player, equal to their health remaining. Damaged enemies do less damage on contact.<br>
+The player takes damage if he gets in contact with enemy units. This will kill the unit and deal damage to the player, equal to their health remaining. Damaged enemies do less damage on contact. Enemies also get faster the longer they live, so it is advisable to kill old creeps first.<br>
+<strong>C3.5</strong><br>
+A hero always has the same HP pool, which is not automaticall increasing with each wave. Enemies do always the same damage, regardless of the current wave. A hero can take approximatly 25 hits of full HP enemies before dying. There is no health regen, but the hero will heal slightly after each wave.<br>
 <strong>C4</strong><br>
 If the player takes fatal damage, the wave ends instantly and the player is resurrected. This can happen up to X times (preferable <strong>3</strong>).  If this would happen once more, the player drops out of the game, can leave or continue as spectator. Once he failed to complete a wave and is resurrected, he can either repeat the same wave again or go directly to the next one (like everyone else).<br>
 <strong>C5</strong><br>
-The game progresses endlessly, so it will always finsish with the last player dying X times.</p>
+Gold is the most important resource besides weapons as is needed for nearly all weapon improvements. The player gains gold with every lasthit. Gold gained increases significantly with wave count.<br>
+<strong>C6</strong><br>
+The game progresses until the win condition is met (different for versus/coop). In coop it lasts until you defeated the final boss (more rounds come with higher difficulty) or all players are dead and in versus until the last man standing.</p>
 <h2 id="weapons">Weapons</h2>
 <p><strong>C10</strong><br>
 Weapons are the deciding factor of the game. A weapon is an item that the player can equip in one of his <strong>8</strong> weapon slots around the hero (in a special interface). Weapons are non-physical items and are stored in an infinite seperate inventory.<br>
@@ -45,17 +49,17 @@ Each weapon has a rarity, starting with <em>Basic</em> as the weakest. Further m
 <strong>C14</strong><br>
 Weapons also have an element, but some may have none and others multiple. There are 8 elements in total: <em>Fire, Water, Earth, Wind, Ice, Electricity, Chaos</em> and <em>Order</em>. Weapons with the same element share distinctive properties and have similiar effects in general.<br>
 <strong>C15</strong><br>
-There is one <em>Basic</em> weapon for each element. The player will start its game with a selection of multiples of these weapons. They are typically pretty weak, but can manage to deal with early waves.<br>
+There is one <em>Basic</em> weapon for each element. The player will start its game with a selection of one of multiple presets that contain 4 of these weapons. They are typically pretty weak, but can manage to deal with early waves.<br>
+<strong>C15.5</strong><br>
+Weapons can be sold any time for a portion their value and of the invested money.<br>
 <strong>C16</strong><br>
 Each weapon can also be <em>upgraded</em>. An upgrade costs gold and empowers the weapon by increasing (or decreasing) the values of the weapon (like damage, etc). Each weapon can be upgraded <strong>10</strong> times, before it reaches its maximum level. The upgrade cost is increasing with higher levels.<br>
 <strong>C17</strong><br>
 If a weapon has reached its maximum level, it can be <em>enchanted</em>. This will raise the maximum level by 10 and can unlock different traits or effects of the weapon (weapon-dependent). This can be made multiple times. <em>Enchanting</em> a weapon costs gold based on a multiple of the last upgrade cost.<br>
 <strong>C18</strong><br>
 Weapons can be destroyed to get a <strong>Weapon Core</strong>. A weapon core is a material that is used to create new weapons. Weapon cores always have a single element and can either be <em>Basic</em>, <em>Advanced</em> or <em>Expert</em>. The element of the weapon core depends on the weapon destroyed. For weapons with multiple elements, a random element will be chosen. Weapons without an element can’t be destroyed. The rarity of the cores also reflects the rarity of the destroyed weapon.<br>
-<strong>F1</strong><br>
-Weapon cores are physical items, that are placed in the players inventory (no stash, so max of 9 cores).<br>
 <strong>C19</strong><br>
-Most weapons can also <em>evolve</em> into higher rarity weapons (<em>Master</em> weapons can’t evolve as well as some exceptions). They can evolve once they reached either their maximum level or are already enchanted. <em>Evolving</em> a weapon may cost other materials (cores) besides gold. If the weapon was upgraded further and/or enchanted mutiple times, a part of its levels will be transferred.<br>
+Most weapons can also <em>evolve</em> into different higher rarity weapons (<em>Master</em> weapons can’t evolve as well as some exceptions). They can evolve once they reached either their maximum level or are already enchanted. <em>Evolving</em> a weapon may cost other materials (cores) besides gold. If the weapon was upgraded further and/or enchanted mutiple times, a part of its levels will be transferred.<br>
 <strong>C20</strong><br>
 Weapons can be obtained from different sources. The first weapons will be granted for free at the start of the game. After each successfully complety wave, the player can choose between a selection of possible weapon rewards as well.<br>
 <strong>A1</strong><br>
@@ -76,36 +80,36 @@ Some higher rarity weapons can also be <em>shattered</em>. This will transform t
 <p><strong>A2</strong></p>
 <ul>
 <li>Coop player count? =&gt; X</li>
-<li><strong>8</strong> could be a good count.</li>
+<li><strong>5</strong> could be a good count.</li>
 </ul>
 <p><strong>C30</strong><br>
 The coop gamemode is for 1-X players and requires the players coordination. It will adjust to the starting player count (boss strength, etc) and can be played solo.<br>
 <strong>C31</strong><br>
 A new wave will only start if all players are ready. There is no forced timer for the next wave start. After a timer of xx seconds, other players have the option to start a countdown for the new wave (can be cancelled by the causing player).<br>
 <strong>C32</strong><br>
-If a player dies and has no lifes left in a coop game, a part of his weapons and gold is distributed to the other players. The boss strength stays unchanged and will still be adjusted to the start player count.<br>
+If a player dies the life will be substracted from a global life pool, that is shared by all players (and at the start the sum of the individual ones). If no lifes are left, the player will be out, but his teammates may continues until they die.<br>
 <strong>C33</strong><br>
-After Y rounds a boss wave is incoming. For this wave, all players get teleported to a different, larger arena. They will fight through a much bigger wave until a boss spawns at a certain threshold of slayn enemies. Enemies will continue to spawn until the boss is defeated. If a player dies during this boss battle, he will be teleported back to his arena immidiatly, but doesn’t loose any life. If all players are defeated, the battle will end and every player looses <strong>2</strong> lifes. A boss round can’t be repeated.<br>
+After Y rounds a boss wave is incoming. For this wave, all players get teleported to a different, larger arena. They will fight through a much bigger wave until a boss spawns at a certain threshold of slayn enemies. Enemies will continue to spawn until the boss is defeated. If a player dies during this boss battle, he will be teleported back to his arena immidiatly, but doesn’t loose any life. If all players are defeated, the battle will end and every player looses <strong>1</strong> lifes. A boss round can’t be repeated.<br>
 <strong>C34</strong><br>
-The rewards for a boss battle are shared among all players. Each player can choose a reward from a list of possible options. Each option can only be selected once and the sequence of picks is determined by the total player damage to the boss. Defeated players get a random reward after all other player have picked theirs.<br>
+The rewards for a boss battle are shared among all players. Each player can choose a reward from a list of possible options. Each option can only be selected once and the sequence of picks is determined by the total player damage to the boss and unit kills. Defeated players get a random reward after all other player have picked theirs.<br>
 <strong>F3</strong><br>
 Single player tutorial, that is the same as single player coop mode, but with tips and the ability to pause the game (only enemies and your hero) at any time.</p>
 <h3 id="versus">Versus</h3>
 <p><strong>A3</strong></p>
 <ul>
-<li>Versusplayer count? =&gt; X</li>
-<li>same as coop? maybe even less</li>
+<li>Versus player count? =&gt; X</li>
+<li>maybe 8?</li>
 </ul>
 <p><strong>C40</strong><br>
 The versus gamemode is for 2-X players and focuses on a single player experience with competetive features.<br>
 <strong>C41</strong><br>
-Unlike the other modes, a game of versus will end, if only one player is remaining. This player is chosen as the winner. He may continue to play, like it was a single player game afterwards (no bosses, no battle gound).<br>
+Unlike the other modes, a game of versus will end, if only one player is remaining. This player is chosen as the winner.<br>
 <strong>C42</strong><br>
 After the first player finsished a wave a timer starts. After it expired, all still remaining enemies get stronger every second passed.<br>
 <strong>C43</strong><br>
 If a player dies and has no lifes left in a versus game, he will be dropped out of the game or can continue as a spectator. All of his items and gold is lost.<br>
 <strong>C44</strong><br>
-After Y rounds all players will be teleported to the <strong>battle grounds</strong>. This is a bigger arena where different kind of enemies will spawn constantly. These enemies get quickly stronger over time. Also players can fight each other and all weapons can also affect the enemy players. This special wave ends, if there is only one player remaining.<br>
+After Y rounds all players will be teleported to the <strong>battle grounds</strong>. This is a bigger arena where different kind of enemies will spawn endlessly. These enemies get quickly stronger over time. Also players can fight each other and all weapons can also affect the enemy players. This special wave ends, if there is only one player remaining.<br>
 <strong>C45</strong><br>
 If a player dies during the battle grounds, he will be teleported back to his own arena, but doesn’t loose a life. If a player gets a direct kill during this time, he will be awarded with gold instantly. The dying player doesn’t loose any gold through this.<br>
 <strong>C46</strong><br>
@@ -118,11 +122,13 @@ Different Leaderboards for coop, single player, and versus. Will be based on max
 <p><strong>C50</strong><br>
 There should also be some kind of progressions, that allows the players to maintain some progress from previous attempts. This progress is linked to the players profile and is saved through all games.<br>
 <strong>C51</strong><br>
-<em>Difficulty levels</em> can be unlocked, if the player reaches a certain wave count in single player or coop mode. At the start of the game a difficulty level can be selected. Higher difficulties increase the enemies strength and can activate hidden abilities, etc.<br>
+<em>Difficulty levels</em> can be unlocked, if the player reaches a certain wave count in single player or coop mode. At the start of the game a difficulty level can be selected. The selection is based on a majority vote. Players still unlock the next (their own next not unlocked) difficulty grade. Higher difficulties increase the enemies strength and can activate hidden abilities, etc.<br>
 <strong>C52</strong><br>
-<em>Player levels</em> can be obtained though playing any gamemode. Each game finsished rewards the player with some experience based on performance and difficulty settings. Levels are required to unlock a wider variety of weapons that are locked for new players (more complex, not neccessarily more powerful). Other cosmetic rewards may also be given.<br>
+<em>Player levels</em> can be obtained though playing any gamemode. Each game finsished rewards the player with some experience based on performance and difficulty settings. Levels are required to unlock a wider variety of weapons or even elements (chaos, order) that are locked for new players (more complex, not neccessarily more powerful). Other cosmetic rewards may also be given.<br>
 <strong>C53</strong><br>
 Different heroes are available, that often a slightly different playstyle through changes in active abilities. May be unlocked through progress (time investment) or money.<br>
+<strong>C54</strong><br>
+Achievements and quests can be completed to help the players increasing their player levels. Achievements stay the same and have several stages (e.g. kill 100 units, 10000, 1000000) while quests may change daily/weekly.<br>
 <strong>F5</strong><br>
 A player can also obtain a <strong>Rank</strong> while playing versus games. It may rise on good permormances and get lowered with poor placings. Ranks are also visible to the leaderboards.</p>
 <h2 id="monetization">Monetization</h2>
