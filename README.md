@@ -43,7 +43,7 @@ The slots around the hero are continously spinning with a constant speed in the 
 Each weapon has an internal cooldown, which defines the interval for its activation. While the activation effect may be very different from weapon to weapon, it will fire a projectile of some sort in the most cases. Weapons with the same interval get synchronized to be equally activated along the ring.<br>
 <strong>C13</strong><br>
 Weapons can be classified under certain categories: <strong>Element</strong> and <strong>Rarity</strong>.<br>
-Each weapon has a rarity, starting with <em>Basic</em> as the weakest. Further more there are <em>Advanced</em>, <em>Expert</em> and <em>Msster</em> weapons. Rarity generally tells how strong a weapon is or how much potential it can have.<br>
+Each weapon has a rarity, starting with <em>Basic</em> as the weakest. Further more there are <em>Advanced</em>, <em>Expert</em> and <em>Master</em> weapons. Rarity generally tells how strong a weapon is or how much potential it can have.<br>
 <strong>C14</strong><br>
 Weapons also have an element, but some may have none and others multiple. There are 8 elements in total: <em>Fire, Water, Earth, Wind, Ice, Electricity, Chaos</em> and <em>Order</em>. Weapons with the same element share distinctive properties and have similiar effects in general.<br>
 <strong>C15</strong><br>
@@ -53,7 +53,7 @@ Each weapon can also be <em>upgraded</em>. An upgrade costs gold and empowers th
 <strong>C17</strong><br>
 If a weapon has reached its maximum level, it can be <em>enchanted</em>. This will raise the maximum level by 10 and can unlock different traits or effects of the weapon (weapon-dependent). This can be made multiple times. <em>Enchanting</em> a weapon costs gold based on a multiple of the last upgrade cost.<br>
 <strong>C18</strong><br>
-Weapons can be destroyed to get a <strong>Weapon Core</strong>. A weapon core is a material that is used to create new weapons. Weapon cores always have a single element and can either be <em>Basic</em>, <em>Advanced</em> or <em>Expert</em>. The element of the weapon core depends on the weapon destroyed; for weapons with multiple elements, a random element will be choses; weapons without an element can’t be destroyed. The rarity of the cores also reflects the rarity of the destroyed weapon.<br>
+Weapons can be destroyed to get a <strong>Weapon Core</strong>. A weapon core is a material that is used to create new weapons. Weapon cores always have a single element and can either be <em>Basic</em>, <em>Advanced</em> or <em>Expert</em>. The element of the weapon core depends on the weapon destroyed. For weapons with multiple elements, a random element will be chosen. Weapons without an element can’t be destroyed. The rarity of the cores also reflects the rarity of the destroyed weapon.<br>
 <strong>F1</strong><br>
 Weapon cores are physical items, that are placed in the players inventory (no stash, so max of 9 cores).<br>
 <strong>C19</strong><br>
@@ -64,15 +64,15 @@ Weapons can be obtained from different sources. The first weapons will be grante
 Weapons can also be bought at the market. Possibilities:</p>
 <ul>
 <li>Weapons are quite limited in the market and its only refreshed from time to time (potentially also a shared marked for versus mode)</li>
-<li>Weapons are unlimited in the market and can be bought freely. They are expensive and the player might only be able to buy very few thought the whole game</li>
+<li>Weapons are unlimited in the market and can be bought freely. They are expensive and the player might only be able to buy very few throught the whole game</li>
 <li>The market is only available after several waves (like a traveling merchant). It can only be used during a short time</li>
 </ul>
 <p><strong>C21</strong><br>
-To create of craft a new weapon, the player first needs to select the according recipe (in the shop; similar to dota item upgrades). The ingredients for a weapon are typically <strong>3</strong> weapons cores of the same element and lower rarity. Special weapons may require cores from different elements. The crafting process also costs gold.<br>
+To craft a new weapon, the player first needs to select the according recipe (in the shop; similar to dota item upgrades). The ingredients for a weapon are typically <strong>3</strong> weapons cores of the same element and lower rarity. Special weapons may require cores from different elements. The crafting process also costs gold.<br>
 <strong>F2</strong><br>
-Higher rarity weapon cores can be used instead if the correct one as well. <em>Example: If a recipe requires an Basic water waepon core, but you only have an Advanced water weapon core, it can be used as well</em>.<br>
+Higher rarity weapon cores can be used instead if the correct one as well. <em>Example: If a recipe requires a Basic water weapon core, but you only have an Advanced water weapon core, it can be used as well</em>.<br>
 <strong>C22</strong><br>
-Some higher rarity weapons can also be <em>shattered</em>. This will transform the weapons a support-like weapon. It can be equipped in a weapon slot like normal, but it won’t have any effect on its own. However it can strengthen the weapons placed in adjacent slots. All upgrades and enchantments will be kept. This process costs no gold, but it can’t be reversed.</p>
+Some higher rarity weapons can also be <em>shattered</em>. This will transform the weapons to a support-like weapon. It can be equipped in a weapon slot like normal, but it won’t have any effect on its own. However it can strengthen the weapons placed in adjacent slots. All upgrades and enchantments will be kept. This process costs no gold, but it can’t be reversed.</p>
 <h2 id="gamemodes">Gamemodes</h2>
 <h3 id="coop">Coop</h3>
 <p><strong>A2</strong></p>
@@ -83,7 +83,7 @@ Some higher rarity weapons can also be <em>shattered</em>. This will transform t
 <p><strong>C30</strong><br>
 The coop gamemode is for 1-X players and requires the players coordination. It will adjust to the starting player count (boss strength, etc) and can be played solo.<br>
 <strong>C31</strong><br>
-A new wave will only start if all players are ready. There is forced timer for the next wave start. After a timer of xx seconds, other players have the option to start a countdown for the new wave (can be cancelled by the causing player).<br>
+A new wave will only start if all players are ready. There is no forced timer for the next wave start. After a timer of xx seconds, other players have the option to start a countdown for the new wave (can be cancelled by the causing player).<br>
 <strong>C32</strong><br>
 If a player dies and has no lifes left in a coop game, a part of his weapons and gold is distributed to the other players. The boss strength stays unchanged and will still be adjusted to the start player count.<br>
 <strong>C33</strong><br>
