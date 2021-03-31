@@ -1,5 +1,5 @@
 import { RotateVector2D } from "../lib/util";
-import { Arena } from "./arena";
+import * as Arena from "./arena";
 import {PathModifierResult, ProjectileData, ProjectileOptions, ProjectileState} from "./custom_projectile_enums";
 import { ProjectilePathModifier } from "./path_modifier";
 
@@ -84,7 +84,7 @@ function think():number {
 			projData.state = ProjectileState.DEAD;
 		}
 
-		let pathModifiers: ProjectilePathModifier[] | undefined = projData.pathModifier; 
+		let pathModifiers: ProjectilePathModifier[] | undefined = projData.pathModifier;
 		let newState: ProjectileState = projData.state;
 		if (pathModifiers !== undefined) {
 			pathModifiers.forEach(element => {

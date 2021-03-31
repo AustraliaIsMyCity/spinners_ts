@@ -2,7 +2,7 @@
     "name": "spinners_ts",
     "private": true,
     "scripts": {
-    	"postinstall": "node scripts/install.js",
+        "postinstall": "node scripts/install.js",
         "launch": "node scripts/launch.js",
         "build": "run-p build:*",
         "build:panorama": "tsc --project content/panorama/scripts/custom_game/tsconfig.json",
@@ -10,13 +10,10 @@
         "dev": "run-p dev:*",
         "dev:linkAlias": "link-module-alias",
         "dev:panorama": "tsc --project content/panorama/scripts/custom_game/tsconfig.json --watch",
-        "dev:vscripts": "tstl --project game/scripts/vscripts/tsconfig.json --watch",
-        "dev:localizationCompiler": "tsc --project game/resource/tsconfig.json --watch",
-        "dev:localizationCompilerWatcher": "tsc --project game/resource/tsconfig.json",
-        "dev:runlocalizationWatcher": "node fsWatcher.js"
+        "dev:vscripts": "tstl --project game/scripts/vscripts/tsconfig.json --watch"
     },
     "_moduleAliases": {
-    	"@localization": "game/resource"
+        "@localization": "game/resource"
     },
     "devDependencies": {
         "@moddota/dota-lua-types": "^4.7.1",
