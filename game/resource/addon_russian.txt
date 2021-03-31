@@ -1,6 +1,6 @@
 "lang"
 {
-	"Language" "german"
+	"Language" "russian"
 	"Tokens"
 	{
 		"Hello" "test"

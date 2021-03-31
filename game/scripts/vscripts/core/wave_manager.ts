@@ -1,6 +1,6 @@
 import { BaseModifier, registerModifier } from "../lib/dota_ts_adapter";
 import { GetRandomElement } from "../lib/util";
-import { Arena } from "./arena";
+import * as Arena from "./arena";
 
 export module WaveManager {
 
@@ -27,7 +27,7 @@ export module WaveManager {
 			spawnCount: 999,
 			spawnInterval: 1,
 
-		}	
+		}
 		gameModeEnt.waveInfo = info;
 	}
 
@@ -154,7 +154,7 @@ class UnitAI extends BaseAI {
 			ModifierFunction.BASEATTACK_BONUSDAMAGE,
 		];
 	}
-	
+
 	OnDeath(event: ModifierAttackEvent) {
 		if (IsClient()) {return;}
 		if (this.parent == event.unit) {

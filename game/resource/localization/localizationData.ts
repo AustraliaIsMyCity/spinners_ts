@@ -1,4 +1,5 @@
-import { AbilityLocalization, HeroTalents, LocalizationData, ModifierLocalization, StandardLocalization, Weapons } from "@localization/localizationInterfaces";
+import * as fs from 'fs';
+import { AbilityLocalization, Language, LocalizationData, ModifierLocalization, StandardLocalization } from "~generator/localizationInterfaces";
 
 export function GenerateLocalizationData(): LocalizationData
 {
@@ -7,47 +8,26 @@ export function GenerateLocalizationData(): LocalizationData
     // Arrays
     const Abilities: Array<AbilityLocalization> = new Array<AbilityLocalization>();
     const Modifiers: Array<ModifierLocalization> = new Array<ModifierLocalization>();
-    const StandardTooltips: Array<StandardLocalization> = new Array<StandardLocalization>();
-    const Talents: Array<HeroTalents> = new Array<HeroTalents>();
-    const Weapons: Array<Weapons> = new Array<Weapons>();
+    const StandardTooltips: Array<StandardLocalization> = new Array<StandardLocalization>();    
 
     // Create object of arrays
     const localization_info: LocalizationData =
     {
         AbilityArray: Abilities,
         ModifierArray: Modifiers,
-        StandardArray: StandardTooltips,
-        TalentArray: Talents,
-        WeaponsArray: Weapons,
+        StandardArray: StandardTooltips,        
     };
     //#endregion
 
-    // Enter localization data below!
+    console.log(fs.realpathSync("node_modules/~generator"));
+    // console.log(Language);
 
-    //#region Generic localization
+    // Enter localization data below! Currently this is empty and technically there's no point for this file, but it was where everything started and I can't bring myself to delete it
     StandardTooltips.push({
-        classname: "addon_game_name",
-        name: "Spinners"
+        classname: "Hello",
+        name: "test"
     });
 
-    StandardTooltips.push({
-        classname: "npc_dota_hero_spinner",
-        name: "Spinner"
-    })
-
-    Weapons.push({
-        class_name: "basic_fire",
-        name: "Fireball",
-        description: "A powerful fireball projectile that deals splash damage in an area.",
-    })
-
-    Weapons.push({
-        class_name: "basic_ice",
-        name: "Ice Shards",
-        description: "Fast icy projectile that slows enemies hit.",
-    })
-
-    //#endregion
 
     // Return data to compiler
     return localization_info;

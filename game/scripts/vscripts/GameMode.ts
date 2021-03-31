@@ -1,5 +1,5 @@
-import { Arena } from "./core/arena";
-import { GameModeManager } from "./core/game_mode_manager";
+import * as Arena from "./core/arena";
+import * as GameModeManager from "./core/game_mode_manager";
 import { WaveManager } from "./core/wave_manager";
 import { WeaponManager } from "./core/weapon_manager";
 import { reloadable } from "./lib/tstl-utils";
