@@ -59,7 +59,7 @@ function CenterQuickMove(curPanel: Panel, parentPanel: Panel) {
         if (!nextSlot) return;
         targetPanel = nextSlot;
     }
-    if(curPanel.weaponRef && targetPanel.weaponBaseRef) {
+    if (curPanel.weaponRef && targetPanel.weaponBaseRef) {
         targetPanel.weaponBaseRef.simulateDrop(curPanel.weaponRef);
     }
 }

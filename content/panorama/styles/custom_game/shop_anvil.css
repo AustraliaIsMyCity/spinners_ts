@@ -550,7 +550,7 @@
 }
 
 #AnvilCostIcon {
-	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-image: url("file://{images}/hud/reborn/gold_small_psd.png");
 	background-size: 100% 100%;
 	width: 20px;
 	height: 20px;

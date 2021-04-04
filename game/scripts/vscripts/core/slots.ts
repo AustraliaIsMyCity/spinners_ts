@@ -16,6 +16,8 @@ export class Slot {
 
 	offset?: number;
 
+	unloaded: boolean = false;
+
 	constructor(unit: CDOTA_BaseNPC, pos: Vector, id: number) {
 		this.curLoc = pos;
 		this.id = id;
@@ -23,7 +25,7 @@ export class Slot {
 
 		this.dummy = CreateUnitByName("npc_dota_dummy_unit", pos, false, unit, unit.GetPlayerOwner(), unit.GetTeamNumber())
 		this.dummy.AddNewModifier(unit, undefined, modifier_dummy_slot.name, undefined);
-		this.dummy.SetModelScale(5);
+		this.dummy.SetModelScale(0);
 		this.particle = ParticleManager.CreateParticle("particles/slots/slot_empty.vpcf", ParticleAttachment.ABSORIGIN_FOLLOW, unit);
 		ParticleManager.SetParticleControlEnt(this.particle, 0, this.dummy, ParticleAttachment.ABSORIGIN_FOLLOW, AttachLocation.EMPTY, this.dummy.GetAbsOrigin(), true);
 	}
@@ -37,6 +39,18 @@ export class Slot {
 		this.curLoc = pos;
 
 		if (this.tickVal >= 0) {
+
+			if (this.unloaded) {
+				if (this.tickVal === 0) {
+					this.interval = 0;
+					this.tickVal = -1;
+                    return;
+				}
+                this.tickVal += 1;
+                if ((this.tickVal % this.interval) < 1) {
+                    this.tickVal = 0;
+                }
+			}
 
 			if (this.waiting && !sync) {
 				return;
@@ -73,14 +87,12 @@ export class Slot {
 		this.offset = weapon.wGetPreAttackOffset();
 		this.tickVal = 0;
 		this.waiting = true;
-		print("Loaded!");
 	}
 
 	public unload() {
 		this.weapon = undefined;
 		this.dummy.SetModelScale(0);
-		this.interval = 0;
-		this.tickVal = -1;
+		this.unloaded = true;
 	}
 
 	public pause() {
@@ -94,7 +106,7 @@ export class Slot {
 
 @registerModifier()
 export class modifier_dummy_slot extends BaseModifier {
-	
+
 	CheckState(): Partial<Record<ModifierState, boolean>> {
 		return {
 			[ModifierState.UNSELECTABLE]: true,

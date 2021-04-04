@@ -16,6 +16,9 @@ export class add_weapon extends BaseAbility {
 		"basic_wind",
 		"basic_water",
 	]
+	// possibleWeapons = [
+	// 	"basic_fire",
+	// ]
 
 	OnSpellStart() {
 		let caster = this.GetCaster();

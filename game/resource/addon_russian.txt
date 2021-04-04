@@ -1,8 +1,31 @@
 "lang"
 {
-	"Language" "russian"
-	"Tokens"
-	{
-		"Hello" "test"
-	}
+    "Language"    "russian"
+    "Tokens"
+    {
+        "speech_kobold_greetings"    "Welcome to my Arena!<wait><br>What did you bring you here? An adventure, treasures?"
+        "speech_kobold_greetings2"    "Anyways, I just tell you that it isn't going to be easy!<br>I bet you won't even see the first boss, <slow>hahahahah!</slow><wait><br><br>Ok, I give you a little help at least, choose wisely!<wait>"
+        "preset_fire_chaos"    "Fire Chaos"
+        "preset_ice_storm"    "Icy Storm"
+        "preset_powerful_spark"    "Conductivity"
+        "preset_colorful_addiction"    "Color Addiction"
+        "preset_winter_night"    "Winter Night"
+        "preset_ying_yang"    "Ying Yang"
+        "preset_contact_anxiety"    "Contact Anxiety"
+        "preset_hellfire"    "Hellfire"
+        "basic_fire_name"    "Fireball"
+        "basic_fire_description"    "Fires a linear fireball that deals splash damage to the first unit hit."
+        "basic_ice_name"    "Ice Shards"
+        "basic_ice_description"    "Rapidly fires linear ice projectile that deal single target damage."
+        "basic_electricity_name"    "Spark"
+        "basic_electricity_description"    "Unleashes a powerful single target electric arc after a short preperation period."
+        "basic_chaos_name"    "Dark Laser"
+        "basic_chaos_description"    "Fires a constant laser that deals damage to all touching units."
+        "basic_order_name"    "Light Shards"
+        "basic_order_description"    "Fires multiple homing shards imbued with light energy."
+        "basic_wind_name"    "Wind Blast"
+        "basic_wind_description"    "Releases a blast of wind, that pushes nearby enemies away and deals minor damage."
+        "basic_water_name"    "Water Ball"
+        "basic_water_description"    "Fires a slow orb of water, that passes through all enemies and deals damage to them."
+    }
 }

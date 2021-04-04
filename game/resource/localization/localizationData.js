@@ -1,26 +1,6 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GenerateLocalizationData = void 0;
-var fs = __importStar(require("fs"));
 function GenerateLocalizationData() {
     // This section can be safely ignored, as it is only logic.
     //#region Localization logic
@@ -35,12 +15,46 @@ function GenerateLocalizationData() {
         StandardArray: StandardTooltips,
     };
     //#endregion
-    console.log(fs.realpathSync("node_modules/~generator"));
-    // console.log(Language);
-    // Enter localization data below! Currently this is empty and technically there's no point for this file, but it was where everything started and I can't bring myself to delete it
+    // Enter localization data below!
     StandardTooltips.push({
-        classname: "Hello",
-        name: "test"
+        classname: "speech_kobold_greetings",
+        name: "Welcome to my Arena!<wait><br>What did you bring you here? An adventure, treasures?"
+    });
+    StandardTooltips.push({
+        classname: "speech_kobold_greetings2",
+        name: "Anyways, I just tell you that it isn't going to be easy!<br>I bet you won't even see the first boss, <slow>hahahahah!</slow><wait><br><br>Ok, I give you a little help at least, choose wisely!<wait>"
+    });
+    StandardTooltips.push({
+        classname: "preset_fire_chaos",
+        name: "Fire Chaos"
+    });
+    StandardTooltips.push({
+        classname: "preset_ice_storm",
+        name: "Icy Storm"
+    });
+    StandardTooltips.push({
+        classname: "preset_powerful_spark",
+        name: "Conductivity"
+    });
+    StandardTooltips.push({
+        classname: "preset_colorful_addiction",
+        name: "Color Addiction"
+    });
+    StandardTooltips.push({
+        classname: "preset_winter_night",
+        name: "Winter Night"
+    });
+    StandardTooltips.push({
+        classname: "preset_ying_yang",
+        name: "Ying Yang"
+    });
+    StandardTooltips.push({
+        classname: "preset_contact_anxiety",
+        name: "Contact Anxiety"
+    });
+    StandardTooltips.push({
+        classname: "preset_hellfire",
+        name: "Hellfire"
     });
     // Return data to compiler
     return localization_info;

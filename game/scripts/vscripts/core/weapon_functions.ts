@@ -23,48 +23,11 @@ export function CreateNewLaser(weapon: BaseWeapon, referenceUnit: CDOTA_BaseNPC,
 }
 
 export function DoCustomKnockback(unit: CDOTA_BaseNPC, direction: Vector, distance: number) {
-	let velocity = direction * distance / 2 as Vector;
-	AddVelocity(unit, velocity);
+
 }
 
-export function AddVelocity(unit: CDOTA_BaseNPC, velocity: Vector) {
-	if (unit.HasModifier(modifier_unit_velocity.name)) {
-		let modifier = unit.FindModifierByName(modifier_unit_velocity.name)! as modifier_unit_velocity;
-		modifier.AddVelocity(velocity);
-	} else {
-		let modifier = unit.AddNewModifier(unit, undefined, modifier_unit_velocity.name, undefined) as modifier_unit_velocity;
-		modifier.AddVelocity(velocity);
-	}
-}
+export class modifier_custom_knockback extends WeaponModifier{
 
-@registerModifier()
-export class modifier_unit_velocity extends BaseModifier {
-
-	tickSpeed: number = 1/60;
-	curVelocity: Vector = Vector(0,0,0);
-	defaultFriction = 0.25;
-	minSpeed = 50;
-
-	AddVelocity(newVelocity: Vector) {
-		this.curVelocity = this.curVelocity + newVelocity as Vector;
-	}
-
-	OnIntervalThink() {
-		let parent = this.GetParent();
-		let speed = this.curVelocity.Length2D();
-		let direction = this.curVelocity.Normalized();
-		let parentLoc = parent.GetAbsOrigin();
-		let newLoc = parentLoc + direction * speed * this.tickSpeed as Vector;
-		parent.SetAbsOrigin(newLoc);
-
-		let newSpeed = speed - speed * (this.defaultFriction * this.defaultFriction * this.tickSpeed);
-		if (newSpeed <= this.minSpeed) {
-			this.curVelocity = Vector(0,0,0);
-			this.StartIntervalThink(-1);
-			return;
-		}
-		this.curVelocity = direction * newSpeed as Vector;
-	}
 }
 
 @registerModifier()

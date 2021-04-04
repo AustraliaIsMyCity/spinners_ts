@@ -1,10 +1,10 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf31:version{593cd181-a1d6-4c6f-9a8c-0534e8d44db0} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf35:version{ec5bfcca-b89d-4591-9ef4-c8679487d623} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 128
 	m_ConstantColor = [ 127, 255, 0, 255 ]
-	m_nBehaviorVersion = 10
+	m_nBehaviorVersion = 11
 	m_nFirstMultipleOverride_BackwardCompat = 5
 	m_controlPointConfigurations = 
 	[
@@ -13,13 +13,6 @@
 			m_drivers = 
 			[
 				{
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = [ 0.0, 0.0, 0.0 ]
-					m_angOffset = [ 0.0, 0.0, 0.0 ]
-					m_entityName = "self"
-				},
-				{
-					m_iControlPoint = 3
 					m_iAttachType = "PATTACH_WORLDORIGIN"
 					m_vecOffset = [ 0.0, 0.0, 0.0 ]
 					m_angOffset = [ 0.0, 0.0, 0.0 ]
@@ -501,16 +494,13 @@
 					m_Stops = [  ]
 				}
 			}
-			m_nControlPointNumber = 3
 			m_bLocalCoords = true
-			m_vecDistanceBiasAbs = [ 1.0, 0.0, 0.0 ]
 			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
 			m_fRadiusMax = 170.0
 			m_fRadiusMin = 170.0
 		},
 		{
 			_class = "C_INIT_VelocityRadialRandom"
-			m_nControlPointNumber = 3
 			m_fSpeedMin = -300.0
 			m_fSpeedMax = -300.0
 		},
@@ -1068,6 +1058,16 @@
 					}
 				},
 			]
+		},
+		{
+			_class = "C_OP_RenderSprites"
+			m_OutlineColor = [ 255, 255, 255 ]
+			m_vecTexturesInput = 
+			[
+				{
+				},
+			]
+			m_bDisableOperator = true
 		},
 	]
 	m_Children = 

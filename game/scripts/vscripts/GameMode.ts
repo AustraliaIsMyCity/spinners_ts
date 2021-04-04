@@ -1,5 +1,5 @@
-import * as Arena from "./core/arena";
-import * as GameModeManager from "./core/game_mode_manager";
+import { Arena } from "./core/arena";
+import { GameModeManager } from "./core/game_mode_manager";
 import { WaveManager } from "./core/wave_manager";
 import { WeaponManager } from "./core/weapon_manager";
 import { reloadable } from "./lib/tstl-utils";
@@ -46,7 +46,7 @@ export class GameMode {
 		}
 	}
 
-	private StartGame(): void {
+	private StartGame() {
 		print("Game starting!");
 
 		Arena.Init();
@@ -54,6 +54,8 @@ export class GameMode {
 		WaveManager.Init();
 		GameModeManager.Init();
 		// Do some stuff here
+
+        // GameModeManager.SendWelcome();
 	}
 
 	// Called on script_reload
@@ -78,7 +80,7 @@ export class GameMode {
 			}
 		}
 		if (unit.IsRealHero() && unit.GetUnitName() == "npc_dota_hero_wisp") {
-			Timers.CreateTimer(1, () => GameModeManager.SendWelcome());
+			// Timers.CreateTimer(1, () => GameModeManager.SendWelcome());
 			let playerID = unit.GetPlayerID();
 			WeaponManager.InitForPlayer(playerID);
 		}
