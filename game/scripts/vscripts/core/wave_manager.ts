@@ -28,6 +28,9 @@ export module WaveManager {
 
 		}	
 		gameModeEnt.waveInfo = info;
+		ListenToGameEvent("entity_killed", event => {
+			OnUnitKilled(event);
+		}, undefined);
 	}
 
 	function OnNextWaveClick(event: {
@@ -91,7 +94,7 @@ export module WaveManager {
 		return unit;
 	}
 
-	export function RegisterDeath(unit?: CDOTA_BaseNPC) {
+	function RegisterDeath(unit?: CDOTA_BaseNPC) {
 		let gameMode:CDOTABaseGameMode = GameRules.GetGameModeEntity()
 		gameMode.waveInfo.waveCount -= 1;
 		gameMode.waveInfo.killCount += 1;
@@ -104,6 +107,11 @@ export module WaveManager {
 			OnWaveComplete();
 			print("Complete!");
 		}
+	}
+
+	function OnUnitKilled(event: EntityKilledEvent) {
+		const unit = EntIndexToHScript(event.entindex_killed) as CDOTA_BaseNPC;
+		RegisterDeath(unit);
 	}
 }
 
@@ -153,13 +161,6 @@ class UnitAI extends BaseAI {
 			ModifierFunction.BASEATTACK_BONUSDAMAGE,
 		];
 	}
-	
-	// OnDeath(event: ModifierAttackEvent) {
-	// 	if (IsClient()) {return;}
-	// 	if (this.parent == event.unit) {
-	// 		WaveManager.RegisterDeath(this.parent);
-	// 	}
-	// }
 
 	GetModifierMoveSpeedBonus_Percentage():number {
 		return this.GetStackCount() * 2;
