@@ -8,38 +8,54 @@ function GenerateLocalizationData() {
     var Abilities = new Array();
     var Modifiers = new Array();
     var StandardTooltips = new Array();
-    var Talents = new Array();
-    var Weapons = new Array();
     // Create object of arrays
     var localization_info = {
         AbilityArray: Abilities,
         ModifierArray: Modifiers,
         StandardArray: StandardTooltips,
-        TalentArray: Talents,
-        WeaponsArray: Weapons,
     };
     //#endregion
     // Enter localization data below!
-    //#region Generic localization
     StandardTooltips.push({
-        classname: "addon_game_name",
-        name: "Spinners"
+        classname: "speech_kobold_greetings",
+        name: "Welcome to my Arena!<wait><br>What did you bring you here? An adventure, treasures?"
     });
     StandardTooltips.push({
-        classname: "npc_dota_hero_spinner",
-        name: "Spinner"
+        classname: "speech_kobold_greetings2",
+        name: "Anyways, I just tell you that it isn't going to be easy!<br>I bet you won't even see the first boss, <slow>hahahahah!</slow><wait><br><br>Ok, I give you a little help at least, choose wisely!<wait>"
     });
-    Weapons.push({
-        class_name: "basic_fire",
-        name: "Fireball",
-        description: "A powerful fireball projectile that deals splash damage in an area.",
+    StandardTooltips.push({
+        classname: "preset_fire_chaos",
+        name: "Fire Chaos"
     });
-    Weapons.push({
-        class_name: "basic_ice",
-        name: "Ice Shards",
-        description: "Fast icy projectile that slows enemies hit.",
+    StandardTooltips.push({
+        classname: "preset_ice_storm",
+        name: "Icy Storm"
     });
-    //#endregion
+    StandardTooltips.push({
+        classname: "preset_powerful_spark",
+        name: "Conductivity"
+    });
+    StandardTooltips.push({
+        classname: "preset_colorful_addiction",
+        name: "Color Addiction"
+    });
+    StandardTooltips.push({
+        classname: "preset_winter_night",
+        name: "Winter Night"
+    });
+    StandardTooltips.push({
+        classname: "preset_ying_yang",
+        name: "Ying Yang"
+    });
+    StandardTooltips.push({
+        classname: "preset_contact_anxiety",
+        name: "Contact Anxiety"
+    });
+    StandardTooltips.push({
+        classname: "preset_hellfire",
+        name: "Hellfire"
+    });
     // Return data to compiler
     return localization_info;
 }

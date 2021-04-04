@@ -2,7 +2,7 @@ import { TableToArray } from "../lib/util";
 import { BaseWeapon, WeaponData, WeaponValue } from "./weapon_base";
 
 export module WeaponManager {
-	
+
 	let IDs: WeaponID[] = [];
 	let curID: WeaponID = 0;
 	let lookupTable: {[id: number]: BaseWeapon} = {};
@@ -18,7 +18,7 @@ export module WeaponManager {
 	export function InitForPlayer(playerID: PlayerID) {
 		CustomNetTables.SetTableValue("weapon_storage", ""+playerID, {weapons: []});
 	}
-	
+
 	function OnWeaponChange(event: {
 		oldSlot: number,
 		newSlot: number,
@@ -85,7 +85,6 @@ export module WeaponManager {
 		let player = PlayerResource.GetPlayer(event.PlayerID)!;
 		let table = CustomNetTables.GetTableValue("weapon_storage", ""+event.PlayerID);
 		let weaponArr = TableToArray(table.weapons);
-		DeepPrintTable(weaponArr);
 		for (const weaponID of weaponArr) {
 			let weapon = GetWeaponByID(weaponID);
 			if (!weapon) {
@@ -117,7 +116,6 @@ export module WeaponManager {
 
 	export function ClearStorage(playerID: PlayerID) {
 		let player = PlayerResource.GetPlayer(playerID)!;
-		print(playerID);
 		let table = CustomNetTables.GetTableValue("weapon_storage", ""+playerID);
 		let weaponArr = TableToArray(table.weapons);
 		for (const weaponID of weaponArr) {
@@ -125,11 +123,11 @@ export module WeaponManager {
 		}
 		CustomNetTables.SetTableValue("weapon_storage", ""+playerID, {weapons: []});
 	}
-	
+
 	export function RegisterWeapon(weapon: BaseWeapon) {
 		let newID = curID;
 		curID++;
-	
+
 		lookupTable[newID] = weapon;
 		weapon.setID(newID);
 
@@ -150,23 +148,21 @@ export module WeaponManager {
 					instance[key] = prototype[key];
 				}
 			}
-	
+
 			prototype = getmetatable(prototype);
 		}
 	}
-	
+
 	export function GetWeaponByID(id: WeaponID):BaseWeapon | undefined {
 		return lookupTable[id];
 	}
-	
+
 	export function GetWeaponDataByName(name: string): WeaponData | undefined {
 		// print("Try get weapon data: ", name);
 		if (!allData.hasOwnProperty(name)) {
 			FetchWeaponKV();
 		}
 		if (!allData.hasOwnProperty(name)) {
-			print("No property?");
-			DeepPrintTable(allData);
 			return undefined;
 		}
 		let weaponData = allData[name] as any;
@@ -181,7 +177,7 @@ export module WeaponManager {
 			element: element,
 			values: {},
 		};
-	
+
 		for (let [key, value] of Object.entries(weaponData["Values"] || [])) {
 			let valueData = value as any;
 			let weaponValue: WeaponValue = {
@@ -194,20 +190,18 @@ export module WeaponManager {
 		}
 		return newData;
 	}
-	
+
 	export function FetchWeaponKV():void {
 		let values = LoadKeyValues("scripts/npc/weapons/all_weapons.kv");
 		for (let [key, value] of Object.entries(values)) {
 			allData[key] = value;
 		}
 	}
-	
+
 	export function GetWeaponFromData(caster: CDOTA_BaseNPC_Hero, data: WeaponData): BaseWeapon | undefined {
 		let script = data.script;
 		if (script == "") {return undefined; }
 		let classImport = require("weapons/" + script);
-		print("CLASS IMPORT");
-		print(classImport);
 		let newWeapon = new BaseWeapon(caster, data, script);
 		toDotaClassInstanceCustom(newWeapon, classImport[script]);
 		return newWeapon;
@@ -225,5 +219,5 @@ export module WeaponManager {
 			case "ORDER": return WeaponElement.ORDER;
 			default: return WeaponElement.NONE;
 		}
-	}	
+	}
 }

@@ -15,18 +15,18 @@ export class hero_spin extends BaseAbility {
 export class SpinModifier extends BaseModifier {
 
 	LoadWeapon(weapon: BaseWeapon, index: number):void {
-		print("Load weapon!", tostring(weapon));
+		// print("Load weapon!", tostring(weapon));
 	}
 
 	UnloadWeapon(slot: number):void {
-		print("UnlLoad weapon!", tostring(slot));
+		// print("UnlLoad weapon!", tostring(slot));
 	}
 }
 
 @registerModifier()
 export class spin_passive extends SpinModifier {
 	caster: CDOTA_BaseNPC = this.GetCaster()!;
-	ability: CDOTABaseAbility = this.GetAbility()!; 
+	ability: CDOTABaseAbility = this.GetAbility()!;
 	parent: CDOTA_BaseNPC = this.GetParent();
 
 	IsHidden() {return true}
@@ -45,6 +45,12 @@ export class spin_passive extends SpinModifier {
 
 	started: boolean = false;
 	slots: Slot[] = [];
+
+	CheckState() {
+		return {
+			[ModifierState.DISARMED]: true,
+		}
+	}
 
 	OnCreated(): void {
 		this.StartIntervalThink(this.interval);
@@ -75,8 +81,9 @@ export class spin_passive extends SpinModifier {
 				let sync = false;
 				if (syncInterval > 0) {
 					let syncVal = Math.round((this.count - i - 1) * ((1/this.interval) / this.count)) * syncInterval;
-					let finalSync = syncVal - (this.tick % ((1/this.interval) * syncInterval))
-					sync = finalSync <= 0 || finalSync > -1;
+					let syncTick = (this.tick % ((1/this.interval) * syncInterval))
+					let finalSync = syncVal - syncTick;
+					sync = finalSync <= 0 && finalSync > -1;
 				}
 				this.slots[i].tick(newLoc, sync);
 			}
@@ -88,7 +95,7 @@ export class spin_passive extends SpinModifier {
 	}
 
 	LoadWeapon(weapon: BaseWeapon, index: number) {
-		print("Load Weapon into slot ", index - 1);
+		// print("Load Weapon into slot ", index - 1);
 		let slot: Slot = this.slots[index - 1];
 		slot.load(weapon);
 	}

@@ -17,7 +17,6 @@ export module WaveManager {
 		CustomGameEventManager.RegisterListener("next_wave", (_, event) => OnNextWaveClick(event));
 		let gameMode:CDOTABaseGameMode = GameRules.GetGameModeEntity()
 		spawnLocs = Arena.GetPossibleSpawnLocations("all", 40);
-		// gameMode.SetContextThink("OnThink", think, spawnInterval);
 		gameModeEnt = gameMode;
 		let info: WaveInfo = {
 			waveCount: 0,
@@ -87,7 +86,7 @@ export module WaveManager {
 		unit.SetHealth(gameModeEnt.waveInfo.health!);
 		unit.SetBaseMoveSpeed(gameModeEnt.waveInfo.moveSpeed!);
 
-		let unitAI = unit.AddNewModifier(hero, undefined, "UnitAI", {}) as BaseAI;
+		let unitAI = unit.AddNewModifier(hero, undefined, UnitAI.name, {}) as BaseAI;
 		unitAI.SetTarget(hero);
 		return unit;
 	}
@@ -98,12 +97,12 @@ export module WaveManager {
 		gameMode.waveInfo.killCount += 1;
 		let percentage = gameMode.waveInfo.killCount / gameMode.waveInfo.maxCount;
 
-		// Timers.RemoveTimer(gameMode.waveTimer);
-		// gameMode.waveTimer = Timers.CreateTimer(think);
+		print(gameMode.waveInfo.killCount);
 
 		CustomGameEventManager.Send_ServerToAllClients("update_wave_progress", {percentage});
 		if (gameMode.waveInfo.killCount == gameMode.waveInfo.maxCount) {
 			OnWaveComplete();
+			print("Complete!");
 		}
 	}
 }
@@ -155,12 +154,12 @@ class UnitAI extends BaseAI {
 		];
 	}
 	
-	OnDeath(event: ModifierAttackEvent) {
-		if (IsClient()) {return;}
-		if (this.parent == event.unit) {
-			WaveManager.RegisterDeath(this.parent);
-		}
-	}
+	// OnDeath(event: ModifierAttackEvent) {
+	// 	if (IsClient()) {return;}
+	// 	if (this.parent == event.unit) {
+	// 		WaveManager.RegisterDeath(this.parent);
+	// 	}
+	// }
 
 	GetModifierMoveSpeedBonus_Percentage():number {
 		return this.GetStackCount() * 2;

@@ -6,7 +6,7 @@ import { WeaponManager } from "./weapon_manager";
 
 
 export module GameModeManager {
-	
+
 	let presetData: PresetData[] = [];
 	let currentPresets: {[index: number]: {name: string, weapons: BaseWeapon[]}} = {};
 
@@ -40,22 +40,21 @@ export module GameModeManager {
 	export function SendWelcome() {
 		let koboldKing = Arena.GetKobold()
 		let casterLoc = (koboldKing.GetAbsOrigin() +  Vector(80,0,260)) as Vector;
-		let owner = Arena.GetArenaOwner();
-		return;
-		owner.AddNewModifier(owner, undefined, "CutSceneStun", {});
-		let playerID = (owner as CDOTA_BaseNPC_Hero).GetPlayerID();
-		let player = PlayerResource.GetPlayer(playerID)!;
+		// let owner = Arena.GetArenaOwner();
+		// owner.AddNewModifier(owner, undefined, "CutSceneStun", {});
+		// let playerID = (owner as CDOTA_BaseNPC_Hero).GetPlayerID();
+		// let player = PlayerResource.GetPlayer(playerID)!;
 		Arena.MoveCameraToLocation(casterLoc);
 		Timers.CreateTimer(1, () => {
-			Arena.ShowBubble(casterLoc, "#speech_kobold_greetings", 8);
+			Arena.ShowBubble(casterLoc, "#speech_kobold_greetings", 5);
 		});
-		Timers.CreateTimer(10, () => {
-			Arena.ShowBubble(casterLoc, "#speech_kobold_greetings2", 9);
+		Timers.CreateTimer(7, () => {
+			Arena.ShowBubble(casterLoc, "#speech_kobold_greetings2", 15);
 		});
-		Timers.CreateTimer(18, () => {
+		Timers.CreateTimer(21, () => {
 			ShowPresets();
 		});
-		owner.RemoveModifierByName("CutSceneStun");
+		// owner.RemoveModifierByName("CutSceneStun");
 	}
 
 	function FirstPerk() {

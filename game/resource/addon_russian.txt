@@ -1,6 +1,6 @@
 "lang"
 {
-    "Language"    "english"
+    "Language"    "russian"
     "Tokens"
     {
         "speech_kobold_greetings"    "Welcome to my Arena!<wait><br>What did you bring you here? An adventure, treasures?"

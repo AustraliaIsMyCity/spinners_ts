@@ -1,5 +1,3 @@
-import { Arena } from "../../core/arena";
-import { GameModeManager } from "../../core/game_mode_manager";
 import { WeaponManager } from "../../core/weapon_manager";
 import { BaseAbility, registerAbility } from "../../lib/dota_ts_adapter";
 
